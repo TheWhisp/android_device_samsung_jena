@@ -15,7 +15,7 @@
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 ## Inherit proprietary blobs
-$(call inherit-product-if-exists, vendor/samsung/jena/vendor.mk)
+$(call inherit-product, device/samsung/jena/proprietary/proprietary.mk)
 
 ## Graphics
 PRODUCT_PACKAGES += \
