@@ -1,0 +1,48 @@
+#
+# system.prop for GT-S6500
+#
+
+## RIL, network
+rild.libpath=/system/lib/libsec-ril.so
+rild.libargs=-d /dev/smd0
+ro.ril.hsxpa=1
+ro.ril.gprsclass=10
+ro.telephony.ril_class=SamsungRIL
+ro.telephony.ril.v3=datacall,icccardstatus
+DEVICE_PROVISIONED=1
+wifi.interface=wlan0
+
+## Display, graphics
+ro.sf.lcd_density=160
+ro.opengles.version=131072
+hwui.render_dirty_regions=false
+ro.max.fling_velocity=4000
+debug.composition.type=gpu
+persist.sys.use_dithering=1
+
+## Performance settings.
+dalvik.vm.heapsize=64m
+dalvik.vm.checkjni=false
+dalvik.vm.dexopt-data-only=1
+ro.zram.default=0
+ro.kernel.android.checkjni=0
+
+## Qualcomm
+debug.sf.hw=1
+com.qc.hardware=true
+com.qc.hdmi_out=false
+debug.enabletr=true
+
+## USB, storage
+persist.sys.usb.config=adb,mass_storage
+persist.service.adb.enable=1
+ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1
+
+# MM module
+media.stagefright.enable-player=true
+media.stagefright.enable-meta=false
+media.stagefright.enable-scan=true
+media.stagefright.enable-http=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
