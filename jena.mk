@@ -48,7 +48,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.msm7x27a \
 	camera.msm7x27a \
-	gps.msm7x27a
+	gps.msm7x27a \
+	poswer.msm7x27a
 
 # Misc
 PRODUCT_PACKAGES += \
