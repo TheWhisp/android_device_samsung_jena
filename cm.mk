@@ -12,28 +12,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Specify phone tech before including full_phone
+## Specify phone tech before including full_phone
 $(call inherit-product, vendor/cm/config/gsm.mk)
 
-# Inherit some common CM stuff.
+## Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-# Inherit device configuration
+## Inherit device configuration
 $(call inherit-product, $(LOCAL_PATH)/full_jena.mk)
 
 PRODUCT_RELEASE_NAME := GT-S6500
 
-# Setup device configuration
+## Setup device configuration
 PRODUCT_NAME := cm_jena
 PRODUCT_DEVICE := jena
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_MODEL := Galaxy Mini 2
 
+## Versioning
 CM_EXPERIMENTAL := true
 CM_EXTRAVERSION := dev
 
 ## Bootanimation
-# Bootanimation
 TARGET_SCREEN_HEIGHT := 480
 TARGET_SCREEN_WIDTH := 320
