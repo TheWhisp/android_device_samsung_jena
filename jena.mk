@@ -80,7 +80,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc \
     $(LOCAL_PATH)/ramdisk/init.qcom.sh:root/init.qcom.sh \
-    $(LOCAL_PATH)/ramdisk/GT-S6500.rle:root/GT-S6500.rle
+    $(LOCAL_PATH)/ramdisk/GT-S6500.rle:root/GT-S6500.rle \
+	$(LOCAL_PATH)/ramdisk/fstab.qcom:root/fstab.qcom
    
 
 # Qualcomm scripts
