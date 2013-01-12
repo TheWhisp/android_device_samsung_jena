@@ -95,9 +95,9 @@ PRODUCT_COPY_FILES += \
 
 ## Wi-Fi config
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
-    $(LOCAL_PATH)/prebuilt/etc/wifi/p2p.conf:system/etc/wifi/p2p.conf \
-    $(LOCAL_PATH)/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+    $(LOCAL_PATH)/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+	$(LOCAL_PATH)/prebuilt/etc/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
+	$(LOCAL_PATH)/prebuilt/bin/wlan_tool:system/bin/wlan_tool
 
 ## Vold config
 PRODUCT_COPY_FILES += \
@@ -134,9 +134,6 @@ PRODUCT_COPY_FILES += \
 
 ## LPM
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/bin/charging_mode:system/bin/charging_mode \
-    $(LOCAL_PATH)/prebuilt/bin/playlpm:system/bin/playlpm \
-    $(LOCAL_PATH)/prebuilt/lib/libQmageDecoder.so:system/lib/libQmageDecoder.so \
     $(LOCAL_PATH)/prebuilt/media/Disconnected.qmg:system/media/Disconnected.qmg \
     $(LOCAL_PATH)/prebuilt/media/battery_batteryerror.qmg:system/media/battery_batteryerror.qmg \
     $(LOCAL_PATH)/prebuilt/media/battery_error.qmg:system/media/battery_error.qmg \

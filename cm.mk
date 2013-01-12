@@ -28,11 +28,11 @@ PRODUCT_NAME := cm_jena
 PRODUCT_DEVICE := jena
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := Galaxy Mini 2
+PRODUCT_MODEL := GT-S6500D
 
 ## Versioning
 CM_EXPERIMENTAL := true
-CM_EXTRAVERSION := dev
+#CM_EXTRAVERSION := dev
 
 ## Bootanimation
 TARGET_SCREEN_HEIGHT := 480

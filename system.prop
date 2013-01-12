@@ -11,6 +11,7 @@ ro.telephony.ril_class=SamsungRIL
 ro.telephony.ril.v3=datacall,icccardstatus
 DEVICE_PROVISIONED=1
 wifi.interface=wlan0
+wifi.ap.interface=athap0
 
 ## Display, graphics
 ro.sf.lcd_density=160

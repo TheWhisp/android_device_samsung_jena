@@ -51,10 +51,10 @@ PRODUCT_COPY_FILES += \
 
 ## Atheros AR6003 firmware
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/ar6000.ko:system/wifi/ar6000.ko \
+	$(LOCAL_PATH)/wifi/ar6000.ko:system/wifi/ar6000.ko \
     $(LOCAL_PATH)/wifi/ath6k/AR6003/hw2.1.1/athtcmd_ram.bin:system/wifi/ath6k/AR6003/hw2.1.1/athtcmd_ram.bin \
-    $(LOCAL_PATH)/wifi/ath6k/AR6003/hw2.1.1/athwlan.bin:system/wifi//ath6k/AR6003/hw2.1.1/athwlan.bin \
-    $(LOCAL_PATH)/wifi/ath6k/AR6003/hw2.1.1/athwlan_mobile.bin:system/wifi//ath6k/AR6003/hw2.1.1/athwlan_mobile.bin \
+    $(LOCAL_PATH)/wifi/ath6k/AR6003/hw2.1.1/athwlan.bin:system/wifi/ath6k/AR6003/hw2.1.1/athwlan.bin \
+    $(LOCAL_PATH)/wifi/ath6k/AR6003/hw2.1.1/athwlan_mobile.bin:system/wifi/ath6k/AR6003/hw2.1.1/athwlan_mobile.bin \
     $(LOCAL_PATH)/wifi/ath6k/AR6003/hw2.1.1/athwlan_router.bin:system/wifi/ath6k/AR6003/hw2.1.1/athwlan_router.bin \
     $(LOCAL_PATH)/wifi/ath6k/AR6003/hw2.1.1/athwlan_tablet.bin:system/wifi/ath6k/AR6003/hw2.1.1/athwlan_tablet.bin \
     $(LOCAL_PATH)/wifi/ath6k/AR6003/hw2.1.1/bdata.SD31.bin:system/wifi/ath6k/AR6003/hw2.1.1/bdata.SD31.bin \
@@ -90,9 +90,23 @@ PRODUCT_COPY_FILES += \
 ## Binaries
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bin/rmt_storage:system/bin/rmt_storage \
+	$(LOCAL_PATH)/bin/abtfilt:system/bin/abtfilt \
     $(LOCAL_PATH)/bin/hci_qcomm_init:system/bin/hci_qcomm_init
 
-## Libs needed by hci_qcomm_init (bluetooth related)
+## Wireless
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/bin/hostapd:system/bin/hostapd \
+	$(LOCAL_PATH)/bin/hostapd_cli:system/bin/hostapd_cli \
+	$(LOCAL_PATH)/bin/hostapd_wps:system/bin/hostapd_wps \
+	$(LOCAL_PATH)/bin/wmiconfig:system/bin/wmiconfig
+
+## Battery, charging	
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/bin/playlpm:system/bin/playlpm \
+	$(LOCAL_PATH)/bin/charging_mode:system/bin/charging_mode \
+	$(LOCAL_PATH)/lib/libQmageDecoder.so:system/lib/libQmageDecoder.so \
+
+## Other libs
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lib/libdiag.so:system/lib/libdiag.so \
 	$(LOCAL_PATH)/lib/libdsm.so:system/lib/libdsm.so \
