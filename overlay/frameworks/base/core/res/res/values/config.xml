@@ -71,7 +71,7 @@
 
      <!-- Values greater or equal to 0 will enable electronbeam screen-on
          animation with the specified delay (in milliseconds), -1 will disable the animation -->
-    <integer name="config_screenOnAnimation">250</integer>
+    <integer name="config_screenOnAnimation">-1</integer>
 
     <!-- Timeout in MS for how long you have to long-press the back key to
          kill the foreground app. -->
@@ -87,7 +87,7 @@
     use cases -->
     <bool name="config_bluetooth_sco_off_call">true</bool>
 
-   	<string name="config_networkLocationProviderPackageName" translatable="false">com.google.android.location</string>
+	<string name="config_networkLocationProviderPackageName" translatable="false">com.google.android.location</string>
 
     <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location</string>
 
