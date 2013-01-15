@@ -33,7 +33,7 @@
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wifi_regexs">
-        <item>"athap\\d"</item>
+        <item>"wlan0"</item>
     </string-array>
 
 	<string-array translatable="false" name="networkAttributes">
@@ -69,31 +69,24 @@
 
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
-     <!-- Values greater or equal to 0 will enable electronbeam screen-on
-         animation with the specified delay (in milliseconds), -1 will disable the animation -->
-    <integer name="config_screenOnAnimation">-1</integer>
-
     <!-- Timeout in MS for how long you have to long-press the back key to
          kill the foreground app. -->
     <integer name="config_backKillTimeout">1500</integer>
 
     <bool name="config_animateScreenLights">false</bool>
+
+	<!-- Boolean to enable electron beam animation to be shown on Qualcomm devices -->
+    <bool name="config_qualcommElectronBeam">true</bool>
+
+	<bool name="config_ui_enableFadingMarquee">false</bool>
     
     <bool name="config_batterySdCardAccessibility">true</bool>
 
     <bool name="config_intrusiveNotificationLed">false</bool>
 
-    <!-- Boolean indicating if current platform supports bluetooth SCO for off call
-    use cases -->
-    <bool name="config_bluetooth_sco_off_call">true</bool>
-
 	<string name="config_networkLocationProviderPackageName" translatable="false">com.google.android.location</string>
 
     <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location</string>
-
-    <!-- Boolean indicating if current platform supports bluetooth wide band
-         speech -->
-    <bool name="config_bluetooth_wide_band_speech">false</bool>
 
     <!-- Boolean indicating if current platform supports quick switch-on/off of
          Bluetooth Module -->
@@ -110,11 +103,37 @@
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
     <integer name="config_deviceHardwareKeys">7</integer>
-
-	<bool name="config_wifiApStartInterface">true</bool>
     
     <!-- Boolean to enable stk functionality on Samsung phones -->
     <bool name="config_samsung_stk">true</bool>
 
-	<bool name="config_qualcommElectronBeam">true</bool>
+	<!-- Vibrator pattern for feedback about a long screen/key press -->
+    <integer-array name="config_longPressVibePattern">
+        <item>50</item>
+    </integer-array>
+
+    <!-- Vibrator pattern for feedback about touching a virtual key -->
+    <integer-array name="config_virtualKeyVibePattern">
+        <item>43</item>
+    </integer-array>
+
+    <!-- Vibrator pattern for a very short but reliable vibration for soft keyboard tap -->
+    <integer-array name="config_keyboardTapVibePattern">
+        <item>50</item>
+    </integer-array>
+
+    <!-- Vibrator pattern for feedback about booting with safe mode disabled -->
+    <integer-array name="config_safeModeDisabledVibePattern">
+        <item>60</item>
+    </integer-array>
+
+    <!-- Vibrator pattern for feedback about booting with safe mode disabled -->
+    <integer-array name="config_safeModeEnabledVibePattern">
+        <item>100</item>
+    </integer-array>
+
+    <!-- Vibrator pattern for feedback about hitting a scroll barrier -->
+    <integer-array name="config_scrollBarrierVibePattern">
+        <item>40</item>
+    </integer-array>
 </resources>

@@ -17,18 +17,28 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 ## Inherit proprietary blobs
 $(call inherit-product, device/samsung/jena/proprietary/proprietary.mk)
 
-## Graphics
+# QCOM Display
 PRODUCT_PACKAGES += \
     copybit.msm7x27a \
     gralloc.msm7x27a \
-	hwcomposer.msm7x27a
+    hwcomposer.msm7x27a \
+    libgenlock \
+    libI420colorconvert \
+    libmemalloc \
+    liboverlay \
+    libQcomUI \
+    libqdutils \
+    libtilerenderer
 
-## OMX, media
+# Omx
 PRODUCT_PACKAGES += \
+    libdivxdrmdecrypt \
     libmm-omxcore \
     libOmxCore \
-    libOmxVenc \
     libOmxVdec \
+    libOmxVenc \
+    libOmxAacEnc \
+    libOmxAmrEnc \
     libstagefrighthw
 
 ## Filesystem tools
@@ -92,6 +102,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.coex.sh:/system/etc/init.qcom.coex.sh \
     $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
     $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh
+
+# Bluetooth configuration
+PRODUCT_COPY_FILES += \
+	system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
 
 ## Wi-Fi config
 PRODUCT_COPY_FILES += \

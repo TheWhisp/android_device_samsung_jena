@@ -1,0 +1,30 @@
+From 7cd2a3ffadf8fad7700626712fe7f06f898a6ea6 Mon Sep 17 00:00:00 2001
+From: Tiziano Carotti <tizianoc@fastwebnet.it>
+Date: Mon, 19 Nov 2012 23:45:47 +0100
+Subject: [PATCH] legacyusb: Fix USB tethering
+
+Change-Id: I79e2fced6660b9bb47ab47a96d46b29bb57e0ee3
+---
+ .../android/server/usb/LegacyUsbDeviceManager.java |    6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/services/java/com/android/server/usb/LegacyUsbDeviceManager.java b/services/java/com/android/server/usb/LegacyUsbDeviceManager.java
+index c6675a7..cbda995 100644
+--- a/services/java/com/android/server/usb/LegacyUsbDeviceManager.java
++++ b/services/java/com/android/server/usb/LegacyUsbDeviceManager.java
+@@ -194,6 +194,12 @@ public class LegacyUsbDeviceManager extends UsbDeviceManager {
+         mHandler.sendEmptyMessage(MSG_SYSTEM_READY);
+     }
+ 
++   @Override
++   public void setCurrentFunctions(String functions, boolean makeDefault) {
++       if (DEBUG) Slog.d(TAG, "setCurrentFunctions(" + functions + ") default: " + makeDefault);
++       mHandler.sendMessage(MSG_SET_CURRENT_FUNCTION, functions, makeDefault);
++   }
++
+     private static String addFunction(String functions, String function) {
+         if (!containsFunction(functions, function)) {
+             if (functions.length() > 0) {
+-- 
+1.7.9.5
+

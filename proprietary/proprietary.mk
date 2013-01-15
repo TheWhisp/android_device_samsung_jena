@@ -48,7 +48,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lib/libmmipl.so:system/lib/libmmipl.so \
     $(LOCAL_PATH)/lib/libmmosal.so:system/lib/libmmosal.so \
     $(LOCAL_PATH)/lib/libmmparser.so:system/lib/libmmparser.so \
-    $(LOCAL_PATH)/lib/libmmparser_divxdrmlib.so:system/lib/libmmparser_divxdrmlib.s
+    $(LOCAL_PATH)/lib/libmmparser_divxdrmlib.so:system/lib/libmmparser_divxdrmlib.so
 
 ## Atheros AR6003 firmware
 PRODUCT_COPY_FILES += \

@@ -24,15 +24,12 @@ debug.composition.type=gpu
 persist.sys.use_dithering=1
 
 ## Performance settings.
-dalvik.vm.heapsize=64m
-dalvik.vm.checkjni=false
-dalvik.vm.dexopt-data-only=1
-ro.zram.default=0
-ro.kernel.android.checkjni=0
+dalvik.vm.heapsize=128m
 
 ## Qualcomm
 debug.sf.hw=1
 com.qc.hardware=true
+debug.fb.rgb565=0
 com.qc.hdmi_out=false
 debug.enabletr=true
 
