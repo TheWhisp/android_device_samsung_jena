@@ -2,7 +2,7 @@
 
 The device configuration is still a work in progress. 
 A lot of parts (mostly ramdisk) that are included requires cleaning.
-Some things (like camera HAL) is just used as stub. 
+Some things (like camera HAL) are just used as stub. 
 As always, any help is appreciated.
 
 Current maintainer: TheWhisp

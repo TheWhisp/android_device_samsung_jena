@@ -173,6 +173,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/media/battery_charging_95.qmg:system/media/battery_charging_95.qmg \
     $(LOCAL_PATH)/prebuilt/media/battery_charging_100.qmg:system/media/battery_charging_100.qmg
 
+## Sensors
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/etc/calib.dat:system/etc/calib.dat \
+	$(LOCAL_PATH)/prebuilt/etc/param.dat:system/etc/param.dat \
+	$(LOCAL_PATH)/prebuilt/etc/sensors.dat:system/etc/sensors.dat
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=2
 
 ## We have enough storage space to hold precise GC data

@@ -25,7 +25,6 @@ PRODUCT_COPY_FILES += \
 
 ## Camera proprietaries
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/lib/libcamera.so:system/lib/libcamera.so \
     $(LOCAL_PATH)/lib/liboemcamera.so:system/lib/liboemcamera.so \
     $(LOCAL_PATH)/lib/libmmjpeg.so:system/lib/libmmjpeg.so \
     $(LOCAL_PATH)/lib/libActionShot.so:system/lib/libActionShot.so \
@@ -92,7 +91,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bin/rmt_storage:system/bin/rmt_storage \
 	$(LOCAL_PATH)/bin/abtfilt:system/bin/abtfilt \
-    $(LOCAL_PATH)/bin/hci_qcomm_init:system/bin/hci_qcomm_init
+    $(LOCAL_PATH)/bin/hci_qcomm_init:system/bin/hci_qcomm_init \
+	$(LOCAL_PATH)/bin/qcm_dut:system/bin/qcm_dut
 
 ## Wireless
 PRODUCT_COPY_FILES += \

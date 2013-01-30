@@ -35,6 +35,7 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /proc/bluetooth/sleep/proto
+	chmod 6777 /system/bin/qcm_dut
     chown system system /sys/module/sco/parameters/disable_esco
     chmod 0660 /sys/module/bluetooth_power/parameters/power
     chmod 0660 /sys/class/rfkill/rfkill0/state
@@ -201,6 +202,12 @@ service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     disabled
     oneshot
 
+service bt_dut_cmd /system/bin/qcm_dut
+    group bluetooth net_bt_admin
+    class main
+    disabled
+    oneshot
+
 service abtfilt /system/bin/abtfilt -d -z -n -v -s -a -q
     user bluetooth
     group system bluetooth net_bt_admin inet net_raw
@@ -231,17 +238,9 @@ service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
     disabled
     oneshot
 
-service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
-    user shell
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
 service hostapd /system/bin/hostapd /data/misc/wifi/hostapd.conf
-    class main
-    socket hostapd_athap0 dgram 660 system wifi
-    user system
-    group wifi net_raw net_admin system inet keystore
+    socket hostapd_athap0 dgram 660 wifi wifi
+    group wifi inet
     oneshot
     disabled
 

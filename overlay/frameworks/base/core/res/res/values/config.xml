@@ -33,16 +33,7 @@
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wifi_regexs">
-        <item>"wlan0"</item>
-    </string-array>
-
-	<string-array translatable="false" name="networkAttributes">
-        <item>"wifi,1,1,1,-1,true"</item>
-        <item>"mobile,0,0,0,-1,true"</item>
-        <item>"mobile_mms,2,0,2,60000,true"</item>
-        <item>"mobile_supl,3,0,2,60000,true"</item>
-        <item>"mobile_dun,4,0,3,60000,true"</item>
-        <item>"mobile_hipri,5,0,3,60000,true"</item>
+        <item>"athap0"</item>
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
@@ -75,8 +66,15 @@
 
     <bool name="config_animateScreenLights">false</bool>
 
+	<!-- Minimum screen brightness allowed by the power manager. -->
+    <integer name="config_screenBrightnessDim">20</integer>
+
 	<!-- Boolean to enable electron beam animation to be shown on Qualcomm devices -->
     <bool name="config_qualcommElectronBeam">true</bool>
+
+	<!-- Values greater or equal to 0 will enable electronbeam screen-on
+         animation with the specified delay (in milliseconds), -1 will disable the animation -->
+    <integer name="config_screenOnAnimation">250</integer>
 
 	<bool name="config_ui_enableFadingMarquee">false</bool>
     
