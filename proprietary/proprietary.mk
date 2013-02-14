@@ -14,6 +14,7 @@
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lib/libseccameraadaptor.so:obj/lib/libseccameraadaptor.so \
+	$(LOCAL_PATH)/lib/libcamera.so:obj/lib/libcamera.so
 
 ## RIL
 PRODUCT_COPY_FILES += \
@@ -25,6 +26,7 @@ PRODUCT_COPY_FILES += \
 
 ## Camera proprietaries
 PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/lib/libcamera.so:system/lib/libcamera.so \
     $(LOCAL_PATH)/lib/liboemcamera.so:system/lib/liboemcamera.so \
     $(LOCAL_PATH)/lib/libmmjpeg.so:system/lib/libmmjpeg.so \
     $(LOCAL_PATH)/lib/libActionShot.so:system/lib/libActionShot.so \

@@ -65,7 +65,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
 	hciconfig \
-    hcitool
+    hcitool \
+	gatttool
 
 ## Permissions
 PRODUCT_COPY_FILES += \

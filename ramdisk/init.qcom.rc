@@ -196,13 +196,14 @@ service setup_fs /system/bin/setup_fs /dev/block/mmcblk0p17 /dev/block/mmcblk0p1
     oneshot
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
-    class main
+	class late_start
     user bluetooth
-    group bluetooth net_bt_admin qcom_oncrpc
+    group qcom_oncrpc bluetooth net_bt_admin
     disabled
     oneshot
 
 service bt_dut_cmd /system/bin/qcm_dut
+	class late_start
     group bluetooth net_bt_admin
     class main
     disabled
