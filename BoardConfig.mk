@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# BoardConfigCommon.mk
+# BoardConfig.mk
 #
-# Product-common compile-time definitions.
+# Product compile-time definitions.
 #
 
 LOCAL_PATH:= $(call my-dir)
@@ -100,8 +100,10 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 ## Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_USES_QCM_DUT := true
 
 ## Wi-Fi
+BOARD_HOSTAPD_DRIVER := WEXT
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 WPA_SUPPLICANT_VERSION := VER_0_8_X
@@ -109,6 +111,10 @@ BOARD_WLAN_DEVICE := ath6kl
 WIFI_DRIVER_MODULE_PATH := "/system/wifi/ar6000.ko"
 WIFI_DRIVER_MODULE_NAME := "ar6000"
 BOARD_HAVE_SAMSUNG_WIFI := true
+WIFI_AP_DRIVER_MODULE_ARG := "ifname=wlan0 fwmode=2"
+WIFI_AP_DRIVER_MODULE_PATH := "/system/wifi/ar6000.ko"
+WIFI_AP_DRIVER_MODULE_NAME := "ar6000"
+WIFI_AP_FIRMWARE_LOADER := ""
 
 ## RIL
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
@@ -121,7 +127,7 @@ BOARD_UMS_LUNFILE := "/sys/devices/platform/usb_mass_storage/lun%d/file"
 
 ## Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
-BOARD_VOLD_MAX_PARTITIONS := 28
+BOARD_VOLD_MAX_PARTITIONS := 24
 
 ## Legacy touchscreen support
 BOARD_USE_LEGACY_TOUCHSCREEN := true
@@ -135,18 +141,35 @@ TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 ## Use device specific lights module
-TARGET_PROVIDES_LIBLIGHTS := true
+TARGET_PROVIDES_LIBLIGHT := true
 
 ## Recovery, storage
-BOARD_HAS_DOWNLOAD_MODE := true
-TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 12582912
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 12582912
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 524288000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 979369984
-BOARD_FLASH_BLOCK_SIZE := 4096
-BOARD_USES_MMCUTILS := true
+BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_HAS_SDCARD_INTERNAL := true
 
-TARGET_RECOVERY_INITRC := device/samsung/jena/recovery/init.recovery.rc
+## Recovery
+BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/jena/recovery/graphics.c
+TARGET_RECOVERY_INITRC := device/samsung/jena/recovery/recovery.rc
 TARGET_RECOVERY_FSTAB := device/samsung/jena/recovery/recovery.fstab
+BOARD_HAS_NO_SELECT_BUTTON := true
+
+## Partitions
+BOARD_DATA_DEVICE := /dev/block/mmcblk0p18
+BOARD_DATA_FILESYSTEM := ext4
+BOARD_DATA_FILESYSTEM_OPTIONS := rw
+BOARD_SYSTEM_DEVICE := /dev/block/mmcblk0p16
+BOARD_SYSTEM_FILESYSTEM := ext4
+BOARD_SYSTEM_FILESYSTEM_OPTIONS := rw
+BOARD_CACHE_DEVICE := /dev/block/mmcblk0p17
+BOARD_CACHE_FILESYSTEM := ext4
+BOARD_CACHE_FILESYSTEM_OPTIONS := rw
+
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_HAS_DOWNLOAD_MODE := true
+BOARD_USES_MMCUTILS := true
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_HAS_NO_MISC_PARTITION := true
