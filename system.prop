@@ -1,5 +1,5 @@
 #
-# system.prop for GT-S6500
+# system.prop for jena
 #
 
 ## RIL, network
@@ -15,7 +15,6 @@ DEVICE_PROVISIONED=1
 
 ## Wi-Fi
 wifi.interface=wlan0
-wifi.ap.interface=athap0
 
 ## Display, graphics
 ro.sf.lcd_density=160
@@ -25,7 +24,7 @@ debug.sf.hw=1
 debug.gr.numframebuffers=3
 
 ## Performance settings.
-dalvik.vm.heapsize=64m
+dalvik.vm.heapsize=128m
 ro.kernel.android.checkjni=0
 dalvik.vm.checkjni=false
 dalvik.vm.dexopt-data-only=1

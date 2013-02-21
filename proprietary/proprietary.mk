@@ -94,20 +94,23 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bin/rmt_storage:system/bin/rmt_storage \
 	$(LOCAL_PATH)/bin/abtfilt:system/bin/abtfilt \
     $(LOCAL_PATH)/bin/hci_qcomm_init:system/bin/hci_qcomm_init \
-	$(LOCAL_PATH)/bin/qcm_dut:system/bin/qcm_dut
+	#$(LOCAL_PATH)/bin/qcm_dut:system/bin/qcm_dut
 
 ## Wireless
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bin/hostapd:system/bin/hostapd \
 	$(LOCAL_PATH)/bin/hostapd_cli:system/bin/hostapd_cli \
 	$(LOCAL_PATH)/bin/hostapd_wps:system/bin/hostapd_wps \
-	$(LOCAL_PATH)/bin/wmiconfig:system/bin/wmiconfig
+	$(LOCAL_PATH)/bin/wmiconfig:system/bin/wmiconfig \
+	$(LOCAL_PATH)/bin/bridgemgrd:system/bin/hostapd_wps \
+	$(LOCAL_PATH)/bin/netmgrd:system/bin/netmgrd
 
 ## Battery, charging	
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bin/playlpm:system/bin/playlpm \
 	$(LOCAL_PATH)/bin/charging_mode:system/bin/charging_mode \
 	$(LOCAL_PATH)/lib/libQmageDecoder.so:system/lib/libQmageDecoder.so \
+	$(LOCAL_PATH)/lib/libqmage_bluesea.so:system/lib/libqmage_bluesea.so \
 
 ## Other libs
 PRODUCT_COPY_FILES += \
@@ -115,5 +118,32 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/lib/libdsm.so:system/lib/libdsm.so \
 	$(LOCAL_PATH)/lib/libnv.so:system/lib/libnv.so \
 	$(LOCAL_PATH)/lib/liboncrpc.so:system/lib/liboncrpc.so \
-	$(LOCAL_PATH)/lib/libqueue.so:system/lib/libqueue.so
+	$(LOCAL_PATH)/lib/libqueue.so:system/lib/libqueue.so \
+	$(LOCAL_PATH)/lib/libqc-opt.so:system/lib/libqc-opt.so
+
+## OMX
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/lib/omx/libOmxAacDec.so:system/lib/libOmxAacDec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxAacEnc.so:system/lib/libOmxAacEnc.so \
+    $(LOCAL_PATH)/lib/omx/libOmxAdpcmDec.so:system/lib/libOmxAdpcmDec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxAmrDec.so:system/lib/libOmxAmrDec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxAmrEnc.so:system/lib/libOmxAmrEnc.so \
+    $(LOCAL_PATH)/lib/omx/libOmxAmrRtpDec.so:system/lib/libOmxAmrRtpDec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxAmrwbDec.so:system/lib/libOmxAmrwbDec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxEvrcDec.so:system/lib/libOmxEvrcDec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxEvrcEnc.so:system/lib/libOmxEvrcEnc.so \
+    $(LOCAL_PATH)/lib/omx/libOmxEvrcHwDec.so:system/lib/libOmxEvrcHwDec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxIttiamVdec.so:system/lib/libOmxIttiamVdec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxMp3Dec.so:system/lib/libOmxMp3Dec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxOn2Dec.so:system/lib/libOmxOn2Dec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxQcelp13Dec.so:system/lib/libOmxQcelp13Dec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxQcelp13Enc.so:system/lib/libOmxQcelp13Enc.so \
+    $(LOCAL_PATH)/lib/omx/libOmxQcelpHwDec.so:system/lib/libOmxQcelpHwDec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxrv9Dec.so:system/lib/libOmxrv9Dec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
+    $(LOCAL_PATH)/lib/omx/libOmxVp8Dec.so:system/lib/libOmxVp8Dec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxWmaDec.so:system/lib/libOmxWmaDec.so \
+    $(LOCAL_PATH)/lib/omx/libOmxWmvDec.so:system/lib/libOmxWmvDec.so
 
