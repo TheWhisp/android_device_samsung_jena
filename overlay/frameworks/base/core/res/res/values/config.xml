@@ -36,7 +36,9 @@
 		<item>"athap0"</item>
     </string-array>
 
-    <bool name="config_wifiApFirmwareReload">false</bool>
+	<!-- Boolean indicating whether the start command should be called on the wireless interface
+         when starting the SoftAp -->
+    <bool name="config_wifiApStartInterface">true</bool>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
          bluetooth interfaces.  If the device doesn't want to support tethering over bluetooth this
@@ -84,9 +86,12 @@
 
     <bool name="config_intrusiveNotificationLed">false</bool>
 
-	<string name="config_networkLocationProviderPackageName" translatable="false">com.google.android.location</string>
-
-    <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location</string>
+	<string-array name="config_locationProviderPackageNames" translatable="false">
+        <!-- The standard AOSP fused location provider -->
+        <item>com.android.location.fused</item>
+        <!-- The Google Network Location Services location provider -->
+        <item>com.google.android.location</item>
+    </string-array>
 
     <!-- Boolean indicating if current platform supports bluetooth wide band
          speech -->
@@ -140,4 +145,13 @@
     <integer-array name="config_scrollBarrierVibePattern">
         <item>40</item>
     </integer-array>
+
+	<!-- Minimum screen brightness setting allowed by the power manager.
+         The user is forbidden from setting the brightness below this level. -->
+    <integer name="config_screenBrightnessSettingMinimum">20</integer>
+
+    <!-- Screen brightness used to dim the screen when the user activity
+         timeout expires.  May be less than the minimum allowed brightness setting
+         that can be set by the user. -->
+    <integer name="config_screenBrightnessDim">20</integer>
 </resources>
