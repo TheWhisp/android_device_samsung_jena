@@ -15,6 +15,7 @@ fi
 # Wait until Samsung's RIL announces MAC addresses
 until [ $(expr length "$WIFIMAC") == 17 ]; do
 	WIFIMAC=`getprop ril.wifi_macaddr`
+	echo `getprop ril.wifi_macaddr` > /data/.nvmac.info
 	sleep 1
 done
 

@@ -13,7 +13,6 @@ on init
     mkdir /storage 0550 system sdcard_r
     mkdir /storage/sdcard0 0775 system system
     mkdir /storage/sdcard1 0775 system system
-	symlink /storage/sdcard1 /storage/sdcard0/external_sdcard
 
     # for backwards compatibility
     symlink /storage/sdcard0 /mnt/sdcard
@@ -22,7 +21,7 @@ on init
     symlink /storage/sdcard1 /mnt/external_sd
 
 on emmc-fs
-	mount_all /fstab.qcom
+	mount_all /fstab.jena
 
 on boot
 	mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
@@ -131,7 +130,7 @@ on boot
 	chmod 1664 sys/class/misc/zinitix_touch_misc
     chown radio fm_radio /sys/devices/platform/gpio-event/wakeup_keys
 
-	#change permissions for battery
+	# change permissions for battery
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/call
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/video
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/music
@@ -163,8 +162,8 @@ on boot
     chmod 0666 /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
     chmod 0666 /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
     chmod 0666 /sys/devices/system/cpu/cpufreq/ondemand/down_differential
-	# Permissions for CyanogenMod IO Scheduler settings
 
+	# Permissions for CyanogenMod IO Scheduler settings
     chown system system /sys/block/mmcblk0/queue/scheduler
     chmod 0664 /sys/block/mmcblk0/queue/scheduler
 
@@ -199,9 +198,17 @@ service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p10 /dev/block/mmc
 on property:ro.emmc=1
     start rmt_storage
 
-service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+service hci_qcomm_init /system/bin/log -t qcom-bluetooth -p i "hci_qcomm_init service requested"
+    class main
     user bluetooth
-    group qcom_oncrpc bluetooth net_bt_admin
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+    class main
+    user bluetooth
+    group qcom_oncrpc bluetooth net_bt_admin system
     disabled
     oneshot
 
@@ -212,14 +219,15 @@ service bt_dut_cmd /system/bin/qcm_dut
     oneshot
 
 on property:init.svc.bluetoothd=running
+    start btwlancoex
+    start amp_load
     write /sys/class/bluetooth/hci0/idle_timeout 7000
-    start abtfilt
 
 on property:init.svc.bluetoothd=stopped
-    stop abtfilt
+    start amp_unload
+    stop btwlancoex
 
 service qcom-sh /system/bin/sh /init.qcom.sh
-	class main
     user root
     oneshot
 
@@ -235,11 +243,16 @@ service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
     disabled
     oneshot
 
-service hostapd /system/bin/hostapd -dddd /data/misc/wifi/hostapd.conf
-    class main
-    socket hostapd_wlan0 dgram 660 root wifi
-    user root
-    group wifi
+service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
+	class main
+    user shell
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service hostapd /system/bin/hostapd /data/misc/wifi/hostapd.conf
+    socket hostapd_athap0 dgram 660 wifi wifi
+    group wifi inet
     oneshot
     disabled
 
@@ -263,6 +276,9 @@ service iprenew_bnep0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd
+
 service abtfilt /system/bin/abtfilt -a -d -z -n -q -v -s -w wlan0
     class main
     user root
@@ -272,15 +288,14 @@ service abtfilt /system/bin/abtfilt -a -d -z -n -q -v -s -w wlan0
 
 service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -Dwext -iwlan0 -W -c/data/misc/wifi/wpa_supplicant.conf
     class main
-    group wifi inet
+	group wifi inet
     socket wpa_wlan0 dgram 660 wifi wifi
-    disabled
+    disabled	
     oneshot
 
-service p2p_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -Dwext -iwlan0 -W -c/data/misc/wifi/p2p_supplicant.conf
+service p2p_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf
     class main
-    group wifi inet
-    socket wpa_wlan0 dgram 660 wifi wifi
+    socket wpa_wlan0 dgram 0660 wifi wifi
     disabled
     oneshot
 
@@ -289,13 +304,9 @@ service qmuxd /system/bin/qmuxd
     group system radio inet
 
 service bridgemgrd /system/bin/bridgemgrd
-    class late_start
     user radio
     group radio
     disabled
-
-service netmgrd /system/bin/netmgrd
-    class main
 
 service get_macaddrs /system/bin/get_macaddrs
     class main
@@ -305,19 +316,3 @@ service get_macaddrs /system/bin/get_macaddrs
 
 on property:init.svc.ril-daemon=running
     start get_macaddrs
-
-service playlpm /system/bin/playlpm
-    class charger
-    user root
-    oneshot
-
-service lpmkey /system/bin/charging_mode
-    class charger
-    user root
-    oneshot
-
-on property:init.svc.playlpm=running
-    chmod 666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-    chmod 666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 122880

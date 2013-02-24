@@ -33,10 +33,9 @@
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wifi_regexs">
-        <item>"wlan0"</item>
+		<item>"athap0"</item>
     </string-array>
 
-	<!-- Boolean indicating whether Softap requires reloading AP firmware -->
     <bool name="config_wifiApFirmwareReload">false</bool>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
@@ -89,6 +88,10 @@
 
     <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location</string>
 
+    <!-- Boolean indicating if current platform supports bluetooth wide band
+         speech -->
+    <bool name="config_bluetooth_wide_band_speech">false</bool>
+
     <!-- Boolean indicating if current platform supports quick switch-on/off of
          Bluetooth Module -->
     <bool name="config_bluetooth_adapter_quick_switch">false</bool>
@@ -115,7 +118,7 @@
 
     <!-- Vibrator pattern for feedback about touching a virtual key -->
     <integer-array name="config_virtualKeyVibePattern">
-        <item>43</item>
+        <item>45</item>
     </integer-array>
 
     <!-- Vibrator pattern for a very short but reliable vibration for soft keyboard tap -->

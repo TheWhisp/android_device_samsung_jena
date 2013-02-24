@@ -1,17 +1,19 @@
-# the DIAG device node is world writable/readable.
+## the DIAG device node is world writable/readable.
 /dev/diag                 0666   root       root
 
-# gpu driver for adreno200 is globally accessible
-/dev/genlock              0666   root       root
+## gpu driver for adreno200 is globally accessible
 /dev/kgsl-3d0             0666   root       root
 /dev/kgsl-2d0             0666   root       root
 /dev/kgsl-2d1             0666   root       root
+
+## the genlock client device node is world writable/readable.
+/dev/genlock              0666   root      root
 
 /dev/graphics/*           0660   system     graphics
 /dev/graphics/fb0         0666   system     graphics
 /dev/alps_io		 	  0666	 root       root
 
-/dev/ttyHS0               0660   bluetooth  bluetooth
+/dev/ttyHS0               0600   bluetooth  bluetooth
 /dev/msm_rotator          0664   system     system
 /dev/pmem_audio           0660   system     audio
 /dev/pmem_smipool*        0660   system     camera
@@ -99,6 +101,6 @@
 /dev/ttyXTRA0             0660   system     system
 /dev/ttyCPLOG0            0660   radio      radio
 
-#other
+## Other
 /dev/oncrpc/*             0660   radio      system
 /dev/rfkill               0660   root      	wifi

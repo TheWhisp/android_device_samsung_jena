@@ -15,6 +15,6 @@ LOCAL_C_INCLUDES       += hardware/qcom/display/libgralloc
 LOCAL_SHARED_LIBRARIES := liblog libutils libcutils
 LOCAL_SHARED_LIBRARIES += libui libhardware libcamera_client
 
-LOCAL_LDFLAGS	       += -L$(LOCAL_PATH) -lcamera
+LOCAL_LDFLAGS          += -Ldevice/samsung/jena/proprietary/lib/ -lcamera
 
 include $(BUILD_SHARED_LIBRARY)
