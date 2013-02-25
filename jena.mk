@@ -30,7 +30,7 @@ PRODUCT_PACKAGES += \
     libqdutils \
     libtilerenderer
 
-# Omx
+## OMX
 PRODUCT_PACKAGES += \
     libdivxdrmdecrypt \
     libmm-omxcore \
@@ -96,7 +96,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc \
     $(LOCAL_PATH)/ramdisk/init.qcom.sh:root/init.qcom.sh \
     $(LOCAL_PATH)/ramdisk/GT-S6500.rle:root/GT-S6500.rle \
-	$(LOCAL_PATH)/ramdisk/fstab.qcom:root/fstab.qcom
+	$(LOCAL_PATH)/ramdisk/lpm.rc:root/lpm.rc \
+	$(LOCAL_PATH)/ramdisk/fstab.jena:root/fstab.jena
    
 
 # Qualcomm scripts
@@ -108,7 +109,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
     $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh
 
-# Bluetooth configuration
+## Bluetooth configuration
 PRODUCT_COPY_FILES += \
 	system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
 
@@ -195,7 +196,7 @@ PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 PRODUCT_LOCALES += mdpi
 
-## For userdebug builds
+## For easy debugging
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
     ro.allow.mock.location=1 \

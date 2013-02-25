@@ -1,8 +1,6 @@
-** Samsung Galaxy Mini 2 - GT-S6500(D) device source / configuration for building CyanogenMod 10 (Android 4.1) **
+** Samsung Galaxy Mini 2 device source / configuration for building CyanogenMod 10 (Android 4.1.2) **
 
-The device configuration is still a work in progress. 
-A lot of parts (mostly ramdisk) that are included requires cleaning.
-Some things (like camera HAL) are just used as stub. 
+The device configuration is still a work in progress.
 As always, any help is appreciated.
 
 Current maintainer: TheWhisp

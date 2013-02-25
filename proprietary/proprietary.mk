@@ -11,12 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+#	Samsung proprietary binaries and libraries
+#
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/lib/libseccameraadaptor.so:obj/lib/libseccameraadaptor.so \
-	$(LOCAL_PATH)/lib/libcamera.so:obj/lib/libcamera.so
-
-## RIL
+## RIL (radio interface relay)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lib/libsec-ril.so:system/lib/libsec-ril.so \
     $(LOCAL_PATH)/lib/libsecril-client.so:system/lib/libsecril-client.so \
@@ -24,7 +23,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bin/rild:system/bin/rild \
 	$(LOCAL_PATH)/bin/qmuxd:system/bin/qmuxd
 
-## Camera proprietaries
+## Camera
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/lib/libcamera.so:system/lib/libcamera.so \
     $(LOCAL_PATH)/lib/liboemcamera.so:system/lib/liboemcamera.so \
@@ -66,7 +65,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/ath6k/AR6003/hw2.1.1/device.bin:system/wifi/ath6k/AR6003/hw2.1.1/device.bin \
     $(LOCAL_PATH)/wifi/ath6k/AR6003/hw2.1.1/otp.bin:system/wifi/ath6k/AR6003/hw2.1.1/otp.bin
 
-## Adreno libs
+## Adreno 2xx GPU
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lib/egl/eglsubAndroid.so:system/lib/egl/eglsubAndroid.so \
     $(LOCAL_PATH)/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
@@ -84,7 +83,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/lib/hw/sensors.msm7x27a.so:system/lib/hw/sensors.msm7x27a.so \
 	$(LOCAL_PATH)/lib/libacdapi_azi.so:system/lib/libacdapi_azi.so
 
-## Firmware
+## GPU firmware
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
     $(LOCAL_PATH)/etc/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw
@@ -94,7 +93,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bin/rmt_storage:system/bin/rmt_storage \
 	$(LOCAL_PATH)/bin/abtfilt:system/bin/abtfilt \
     $(LOCAL_PATH)/bin/hci_qcomm_init:system/bin/hci_qcomm_init \
-	#$(LOCAL_PATH)/bin/qcm_dut:system/bin/qcm_dut
+	$(LOCAL_PATH)/bin/qcm_dut:system/bin/qcm_dut
 
 ## Wireless
 PRODUCT_COPY_FILES += \
