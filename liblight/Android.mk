@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(TARGET_PROVIDES_LIBLIGHTS),true)
+ifeq ($(TARGET_PROVIDES_LIBLIGHT),true)
 
 LOCAL_PATH:= $(call my-dir)
 # HAL module implemenation, not prelinked and stored in

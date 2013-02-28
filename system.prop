@@ -7,8 +7,8 @@ rild.libpath=/system/lib/libsec-ril.so
 rild.libargs=-d /dev/smd0
 ro.ril.hsxpa=1
 ro.ril.gprsclass=10
-ro.telephony.ril_class=SamsungRIL
-ro.telephony.ril.v3=datacall,icccardstatus
+ro.telephony.ril_class=SamsungMSMRIL
+#ro.telephony.ril.v3=datacall,icccardstatus
 ro.telephony.call_ring.multiple=false
 ro.telephony.call_ring.delay=3000
 DEVICE_PROVISIONED=1
@@ -28,10 +28,10 @@ debug.sf.no_hw_vsync=0
 debug.composition.type=gpu
 
 ## Performance settings.
-dalvik.vm.heapsize=128m
-ro.kernel.android.checkjni=0
-dalvik.vm.checkjni=false
-dalvik.vm.dexopt-data-only=1
+#dalvik.vm.heapsize=128m
+#ro.kernel.android.checkjni=0
+#dalvik.vm.checkjni=false
+#dalvik.vm.dexopt-data-only=1
 
 ## Qualcomm
 com.qc.hardware=true
@@ -40,7 +40,7 @@ debug.egl.hw=1
 debug.enabletr=true
 
 ## USB, storage
-persist.sys.usb.config=mass_storage,adb
+persist.sys.usb.config=adb,mass_storage
 persist.service.adb.enable=1
 ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1
 ro.vold.umsdirtyratio=20

@@ -17,6 +17,9 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 ## Inherit proprietary blobs
 $(call inherit-product, device/samsung/jena/proprietary/proprietary.mk)
 
+## Inherit mdpi common overlay
+$(call inherit-product, device/mdpi-common/mdpi.mk)
+
 # QCOM Display
 PRODUCT_PACKAGES += \
     copybit.msm7x27a \
@@ -51,7 +54,6 @@ PRODUCT_PACKAGES += \
     audio.primary.msm7x27a \
     audio_policy.msm7x27a \
     audio.a2dp.default \
-    audio_policy.conf \
     libaudioutils
 
 ## Other hardware
@@ -131,7 +133,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
 	$(LOCAL_PATH)/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv
-
+	
 ## Keychar
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/usr/keychars/7x27a_kp.kcm.bin:system/usr/keychars/7x27a_kp.kcm.bin \
@@ -188,15 +190,14 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=2
 
-## We have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
+$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 ## This is an MDPI device
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 PRODUCT_LOCALES += mdpi
 
-## For easy debugging
+## For easier debugging
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
     ro.allow.mock.location=1 \

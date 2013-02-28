@@ -19,8 +19,8 @@
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lib/libsec-ril.so:system/lib/libsec-ril.so \
     $(LOCAL_PATH)/lib/libsecril-client.so:system/lib/libsecril-client.so \
-	$(LOCAL_PATH)/lib/libril.so:system/lib/libril.so \
-	$(LOCAL_PATH)/bin/rild:system/bin/rild \
+	#$(LOCAL_PATH)/lib/libril.so:system/lib/libril.so \
+	#$(LOCAL_PATH)/bin/rild:system/bin/rild \
 	$(LOCAL_PATH)/bin/qmuxd:system/bin/qmuxd
 
 ## Camera
