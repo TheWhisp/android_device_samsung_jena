@@ -21,14 +21,14 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 ## Inherit device configuration
 $(call inherit-product, $(LOCAL_PATH)/full_jena.mk)
 
-PRODUCT_RELEASE_NAME := GT-S6500
+PRODUCT_RELEASE_NAME := GT-S6500D
 
 ## Setup device configuration
 PRODUCT_NAME := cm_jena
 PRODUCT_DEVICE := jena
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := GT-S6500
+PRODUCT_MODEL := GT-S6500D
 
 ## Versioning
 CM_EXPERIMENTAL := true

@@ -7,14 +7,15 @@ on early-init
     mount debugfs debugfs /sys/kernel/debug
 
 on init
+
+	## Setup storage
 	export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
 
-    mkdir /storage 0550 system sdcard_r
-    mkdir /storage/sdcard0 0775 system system
-    mkdir /storage/sdcard1 0775 system system
+    mkdir /storage/sdcard0 0000 root root
+    mkdir /storage/sdcard1 0000 root root
 
-    # for backwards compatibility
+    # Backwards compability
     symlink /storage/sdcard0 /mnt/sdcard
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard1 /external_sd
@@ -24,6 +25,8 @@ on fs
 	mount_all /fstab.jena
 
 on boot
+
+	## Setup bluetooth
 	mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
@@ -39,58 +42,13 @@ on boot
 	chown bluetooth bluetooth /dev/ttyHS0
     chmod 0666 /dev/ttyHS0
 
-	# Create the directories used by the Wireless subsystem
+	## Setup Wi-Fi
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/wifi/wpa_supplicant 0775 wifi wifi
 	mkdir /data/misc/wifi/hostapd 0770 wifi wifi
-	chmod 0660 /data/misc/wifi/hostapd.conf
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
-    setprop wifi.interface wlan0
-
-    # Create directories for gpsone_daemon services
-    mkdir /data/misc/gpsone_d 0770 system system
-
-    # Create directory from IMS services
-    mkdir /data/shared 0775
-
-    chmod 0660 /dev/smd0
-    chown system system /dev/smd0
-
-    chmod 0660 /dev/ttyGS0
-    chown system system /dev/ttyGS0
-
-    chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
-
-    # Remove write permissions to video related nodes
-    chmod 0664 /sys/devices/virtual/graphics/fb1/hpd
-    chmod 0664 /sys/devices/virtual/graphics/fb1/video_mode
-    chmod 0664 /sys/devices/virtual/graphics/fb1/format_3d
-
-    # Change owner and group for media server and surface flinger
-    chown media system /sys/devices/virtual/graphics/fb1/format_3d
-
-    #For netmgr daemon to inform the USB driver of the correct transport
-    chown radio radio /sys/class/usb_composite/rmnet_smd_sdio/transport
-
-    #To allow interfaces to get v6 address when tethering is enabled
-    write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio3/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio4/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
 
 	chown radio radio /sys/devices/virtual/pdp/pdp/waketime
 
@@ -143,7 +101,7 @@ on boot
     chown system system /sys/class/power_supply/battery/gps
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/batt_use
 
-	# power-management
+    # power-management
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
@@ -164,15 +122,16 @@ on boot
     chmod 0666 /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
     chmod 0666 /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
     chmod 0666 /sys/devices/system/cpu/cpufreq/ondemand/down_differential
+	# change CPU min freq.
+	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 245760
 
 	# Permissions for CyanogenMod IO Scheduler settings
     chown system system /sys/block/mmcblk0/queue/scheduler
     chmod 0664 /sys/block/mmcblk0/queue/scheduler
 
-	# Configure and enable KSM
-    write /sys/kernel/mm/ksm/pages_to_scan 600
-    write /sys/kernel/mm/ksm/sleep_millisecs 3000
-    write /sys/kernel/mm/ksm/run 1
+	# KSM
+    chown sytem system /sys/kernel/mm/ksm/run
+    chmod 666 /sys/kernel/mm/ksm/run
 
 	# For qmuxd socket
     mkdir /data/radio 0770 radio radio
@@ -220,12 +179,6 @@ on property:bluetooth.hciattach=true
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
 
-service bt_dut_cmd /system/bin/qcm_dut
-    group bluetooth net_bt_admin
-    class main
-    disabled
-    oneshot
-
 on property:init.svc.bluetoothd=running
     start abtfilt
     write /sys/class/bluetooth/hci0/idle_timeout 7000
@@ -269,17 +222,17 @@ service p2p_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c/data/misc/wi
     disabled
     oneshot
 
-service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
-    class main
-    disabled
-    oneshot
-
-service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
+service dhcpcd_bnep0 /system/bin/dhcpcd -ABDKL
     class main
     disabled
     oneshot
 
 service iprenew_bnep0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
     class main
     disabled
     oneshot
