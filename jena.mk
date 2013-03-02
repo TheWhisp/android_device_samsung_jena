@@ -201,4 +201,5 @@ PRODUCT_LOCALES += mdpi
 
 ## For easier debugging
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.secure=0
+    ro.secure=0 \
+	ro.debuggable=1

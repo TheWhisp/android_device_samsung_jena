@@ -34,8 +34,6 @@ debug.enabletr=true
 
 ## USB, storage
 persist.sys.usb.config=mass_storage,adb
-persist.service.adb.enable=1
-ro.vold.umsdirtyratio=20
 
 # MM module
 media.stagefright.enable-player=true
