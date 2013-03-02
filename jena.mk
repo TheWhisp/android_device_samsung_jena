@@ -132,7 +132,8 @@ PRODUCT_COPY_FILES += \
 ## Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-	$(LOCAL_PATH)/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv
+	$(LOCAL_PATH)/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
+	$(LOCAL_PATH)/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf
 	
 ## Keychar
 PRODUCT_COPY_FILES += \
@@ -198,8 +199,3 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 PRODUCT_LOCALES += mdpi
-
-## For easier debugging
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.secure=0 \
-	ro.debuggable=1

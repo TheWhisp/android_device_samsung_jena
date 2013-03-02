@@ -99,14 +99,17 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/jena/bluetooth/
 
 ## Wi-Fi
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_WLAN_NO_FWRELOAD := true
 BOARD_WLAN_DEVICE := ath6kl
-BOARD_HOSTAPD_DRIVER := WEXT
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 WIFI_DRIVER_MODULE_PATH := "/system/wifi/ar6000.ko"
 WIFI_DRIVER_MODULE_NAME := "ar6000"
 WIFI_AP_DRIVER_MODULE_PATH := "/system/wifi/ar6000.ko"
 WIFI_AP_DRIVER_MODULE_NAME := "ar6000"
+WIFI_AP_DRIVER_MODULE_ARG := "ifname=athap0 fwmode=2"
+WIFI_AP_FIRMWARE_LOADER := ""
+COMMON_GLOBAL_CFLAGS += -DWIFI_AP_HAS_OWN_DRIVER
 BOARD_HAVE_SAMSUNG_WIFI := true
 
 ## Wi-Fi Hotspot
@@ -150,7 +153,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_MISC_PARTITION := true
 
 ## Uncomment this when building recovery
-#BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
+#BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun%d/file"
 
 ## Filesystem
 BOARD_DATA_DEVICE := /dev/block/mmcblk0p18
