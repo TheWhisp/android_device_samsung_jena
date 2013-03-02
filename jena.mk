@@ -201,6 +201,4 @@ PRODUCT_LOCALES += mdpi
 
 ## For easier debugging
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.secure=0 \
-    ro.allow.mock.location=1 \
-    ro.debuggable=1
+    ro.secure=0
