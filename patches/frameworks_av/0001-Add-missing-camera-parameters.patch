@@ -1,0 +1,76 @@
+From cf0947bda9638c6a4cdc0aa119c1aede14b78d3c Mon Sep 17 00:00:00 2001
+From: Pavel Kirpichyov <pavel.kirpichyov@gmail.com>
+Date: Mon, 17 Dec 2012 17:04:37 +0400
+Subject: [PATCH] Add missing camera parameters
+
+Change-Id: Idb0f53098330a415b08c5c5eed003537785b2b47
+---
+ camera/CameraParameters.cpp       |   20 ++++++++++++++++++++
+ include/camera/CameraParameters.h |   20 ++++++++++++++++++++
+ 2 files changed, 40 insertions(+)
+
+diff --git a/camera/CameraParameters.cpp b/camera/CameraParameters.cpp
+index f41be22..6db5f4d 100644
+--- a/camera/CameraParameters.cpp
++++ b/camera/CameraParameters.cpp
+@@ -275,6 +275,26 @@ const char CameraParameters::KEY_SUPPORTED_SKIN_TONE_ENHANCEMENT_MODES[] = "skin
+ // Values for ISO Settings
+ const char CameraParameters::ISO_AUTO[] = "auto";
+ const char CameraParameters::ISO_HJR[] = "ISO_HJR";
++#ifdef SAMSUNG_CAMERA_QCOM
++const char CameraParameters::FOCUS_MODE_FACEDETECT[] = "facedetect";
++const char CameraParameters::FOCUS_MODE_TOUCHAF[] = "touchaf";
++const char CameraParameters::ISO_50[] = "ISO50";
++const char CameraParameters::KEY_AUTO_CONTRAST[] = "auto-contrast";
++const char CameraParameters::KEY_BEAUTY_MODE[] = "beauty";
++const char CameraParameters::KEY_BLUR_MODE[] = "blur";
++const char CameraParameters::KEY_VINTAGE_MODE[] = "vintagemode";
++const char CameraParameters::KEY_WDR_MODE[] = "wdr";
++const char CameraParameters::VINTAGE_MODE_BNW[] = "bnw";
++const char CameraParameters::VINTAGE_MODE_COOL[] = "cool";
++const char CameraParameters::VINTAGE_MODE_NORMAL[] = "normal";
++const char CameraParameters::VINTAGE_MODE_OFF[] = "off";
++const char CameraParameters::VINTAGE_MODE_WARM[] = "warm";
++const char CameraParameters::SCENE_MODE_DAWN[] = "dusk-dawn";
++const char CameraParameters::SCENE_MODE_DUSKDAWN[] = "dusk-dawn";
++const char CameraParameters::SCENE_MODE_FALL[] = "fall-color";
++const char CameraParameters::SCENE_MODE_FALL_COLOR[] = "fall-color";
++const char CameraParameters::SCENE_MODE_TEXT[] = "text";
++#endif
+ const char CameraParameters::ISO_100[] = "ISO100";
+ const char CameraParameters::ISO_200[] = "ISO200";
+ const char CameraParameters::ISO_400[] = "ISO400";
+diff --git a/include/camera/CameraParameters.h b/include/camera/CameraParameters.h
+index 21e907e..ab0b850 100644
+--- a/include/camera/CameraParameters.h
++++ b/include/camera/CameraParameters.h
+@@ -830,6 +830,26 @@ public:
+     static const char FOCUS_MODE_NORMAL[];
+     static const char ISO_AUTO[];
+     static const char ISO_HJR[] ;
++#ifdef SAMSUNG_CAMERA_QCOM
++    static const char FOCUS_MODE_FACEDETECT[];
++    static const char FOCUS_MODE_TOUCHAF[];
++    static const char ISO_50[];
++    static const char KEY_AUTO_CONTRAST[];
++    static const char KEY_BEAUTY_MODE[];
++    static const char KEY_BLUR_MODE[];
++    static const char KEY_VINTAGE_MODE[];
++    static const char KEY_WDR_MODE[];
++    static const char VINTAGE_MODE_BNW[];
++    static const char VINTAGE_MODE_COOL[];
++    static const char VINTAGE_MODE_NORMAL[];
++    static const char VINTAGE_MODE_OFF[];
++    static const char VINTAGE_MODE_WARM[];
++    static const char SCENE_MODE_DAWN[];
++    static const char SCENE_MODE_DUSKDAWN[];
++    static const char SCENE_MODE_FALL[];
++    static const char SCENE_MODE_FALL_COLOR[];
++    static const char SCENE_MODE_TEXT[];
++#endif
+     static const char ISO_100[];
+     static const char ISO_200[] ;
+     static const char ISO_400[];
+-- 
+1.7.9.5
+

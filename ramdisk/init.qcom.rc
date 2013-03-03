@@ -12,8 +12,9 @@ on init
 	export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
 
-    mkdir /storage/sdcard0 0000 root root
-    mkdir /storage/sdcard1 0000 root root
+	mkdir /storage 0775 system system
+    mkdir /storage/sdcard0 0775 system system
+    mkdir /storage/sdcard1 0775 system system
 
     # Backwards compability
     symlink /storage/sdcard0 /mnt/sdcard
@@ -161,7 +162,7 @@ service hci_qcomm_init /system/bin/log -t qcom-bluetooth -p i "hci_qcomm_init se
     disabled
     oneshot
 
-service hciattach /system/bin/sh /system/etc/init.bt.sh
+service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class main
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
@@ -185,22 +186,9 @@ service qcom-sh /system/bin/sh /init.qcom.sh
     user root
     oneshot
 
-service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
-	class main
-    user root
-    disabled
-    oneshot
-
 service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
 	class main
     user root
-    disabled
-    oneshot
-
-service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
-	class main
-    user shell
-    group bluetooth net_bt_admin
     disabled
     oneshot
 
@@ -238,7 +226,6 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
     oneshot
 
 service hostapd /system/bin/hostapd /data/misc/wifi/hostapd.conf
-    class main
     socket hostapd_athap0 dgram 660 wifi wifi
     group wifi inet
     oneshot

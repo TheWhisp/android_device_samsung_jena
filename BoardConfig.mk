@@ -36,7 +36,6 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CORTEX_CACHE_LINE_32 := true
-TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/jena/include
 
@@ -99,22 +98,11 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/jena/bluetooth/
 
 ## Wi-Fi
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-BOARD_WLAN_NO_FWRELOAD := true
 BOARD_WLAN_DEVICE := ath6kl
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_ath6kl
 WIFI_DRIVER_MODULE_PATH := "/system/wifi/ar6000.ko"
 WIFI_DRIVER_MODULE_NAME := "ar6000"
-WIFI_AP_DRIVER_MODULE_PATH := "/system/wifi/ar6000.ko"
-WIFI_AP_DRIVER_MODULE_NAME := "ar6000"
-WIFI_AP_DRIVER_MODULE_ARG := "ifname=athap0 fwmode=2"
-WIFI_AP_FIRMWARE_LOADER := ""
-COMMON_GLOBAL_CFLAGS += -DWIFI_AP_HAS_OWN_DRIVER
-BOARD_HAVE_SAMSUNG_WIFI := true
-
-## Wi-Fi Hotspot
-BOARD_HAVE_LEGACY_HOSTAPD := true
-BOARD_HOSTAPD_NO_ENTROPY := true
 
 ## RIL
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
@@ -125,6 +113,11 @@ BOARD_RIL_CLASS := ../../../device/samsung/jena/ril/
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 BOARD_VOLD_MAX_PARTITIONS := 24
 
+## UMS
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
+# Enable this when building CWM6
+#BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun%d/file"
+
 ## Legacy touchscreen support
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
@@ -133,11 +126,9 @@ TARGET_NO_INITLOGO := true
 
 ## Bootanimation
 TARGET_BOOTANIMATION_USE_RGB565 := true
-TARGET_BOOTANIMATION_PRELOAD := true
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 ## Use device specific modules
-TARGET_PROVIDES_LIBLIGHT := true
+TARGET_PROVIDES_LIBLIGHTS := true
 
 ## Recovery
 BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/jena/recovery/graphics.c
@@ -151,9 +142,6 @@ BOARD_HAS_DOWNLOAD_MODE := true
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_MISC_PARTITION := true
-
-## Uncomment this when building recovery
-#BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun%d/file"
 
 ## Filesystem
 BOARD_DATA_DEVICE := /dev/block/mmcblk0p18

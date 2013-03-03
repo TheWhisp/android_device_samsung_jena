@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2009, Code Aurora Forum. All rights reserved.
+# Copyright (c) 2009-2011, Code Aurora Forum. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -49,17 +49,24 @@ failed ()
 
 setprop bluetooth.status off
 
-QSOC_DEVICE=${1:-"/dev/ttyHS0"}
-QSOC_BAUD=${3:-"3000000"}
-
 # echo 1 > $BLUETOOTH_SLEEP_PATH
 
-/system/bin/hci_qcomm_init -d $QSOC_DEVICE -s $QSOC_BAUD 
+case $POWER_CLASS in
+  1) PWR_CLASS="-p 0" ;
+     logi "Power Class: 1";;
+  2) PWR_CLASS="-p 1" ;
+     logi "Power Class: 2";;
+  3) PWR_CLASS="-p 2" ;
+     logi "Power Class: CUSTOM";;
+  *) PWR_CLASS="";
+     logi "Power Class: Ignored. Default(1) used (1-CLASS1/2-CLASS2/3-CUSTOM)";
+     logi "Power Class: To override, Before turning BT ON; setprop qcom.bt.dev_power_class <1 or 2 or 3>";;
+esac
 
-exit_code_hci_qcomm_init=$?
+eval $(/system/bin/hci_qcomm_init -e $PWR_CLASS && echo "exit_code_hci_qcomm_init=0" || echo "exit_code_hci_qcomm_init=1")
 
 case $exit_code_hci_qcomm_init in
-  0) logi "Bluetooth QSoC firmware download succeeded";;
+  0) logi "Bluetooth QSoC firmware download succeeded, $BTS_DEVICE $BTS_TYPE $BTS_BAUD";;
   *) failed "Bluetooth QSoC firmware download failed" $exit_code_hci_qcomm_init;;
 esac
 

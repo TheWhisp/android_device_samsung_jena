@@ -17,35 +17,21 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 ## Inherit proprietary blobs
 $(call inherit-product, device/samsung/jena/proprietary/proprietary.mk)
 
-## Inherit mdpi common overlay
-$(call inherit-product, device/mdpi-common/mdpi.mk)
+# Video
+PRODUCT_PACKAGES += \
+    libstagefrighthw \
+    libmm-omxcore \
+    libOmxCore
 
-# QCOM Display
+# Graphics
 PRODUCT_PACKAGES += \
     copybit.msm7x27a \
     gralloc.msm7x27a \
-    hwcomposer.msm7x27a \
-    libgenlock \
-    libI420colorconvert \
-    libmemalloc \
-    liboverlay \
-    libQcomUI \
-    libqdutils \
-    libtilerenderer
+    hwcomposer.msm7x27a
 
-## OMX
+## Misc.
 PRODUCT_PACKAGES += \
-    libdivxdrmdecrypt \
-    libmm-omxcore \
-    libOmxCore \
-    libOmxVdec \
-    libOmxVenc \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libstagefrighthw
-
-## Filesystem tools
-PRODUCT_PACKAGES += \
+	dexpreopt \
     make_ext4fs \
     setup_fs
 
@@ -63,20 +49,12 @@ PRODUCT_PACKAGES += \
 	gps.msm7x27a \
 	power.msm7x27a
 
-# Misc
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory \
-	hciconfig \
-    hcitool \
-	gatttool
-
 ## Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
@@ -105,9 +83,6 @@ PRODUCT_COPY_FILES += \
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.post_boot.sh:/system/etc/init.qcom.post_boot.sh \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.coex.sh:/system/etc/init.qcom.coex.sh \
     $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
     $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh
 
