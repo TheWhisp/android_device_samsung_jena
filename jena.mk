@@ -31,7 +31,7 @@ PRODUCT_PACKAGES += \
 
 ## Misc.
 PRODUCT_PACKAGES += \
-	dexpreopt \
+    dexpreopt \
     make_ext4fs \
     setup_fs
 
@@ -45,9 +45,9 @@ PRODUCT_PACKAGES += \
 ## Other hardware
 PRODUCT_PACKAGES += \
     lights.msm7x27a \
-	camera.msm7x27a \
-	gps.msm7x27a \
-	power.msm7x27a
+    camera.msm7x27a \
+    gps.msm7x27a \
+    power.msm7x27a
 
 ## Permissions
 PRODUCT_COPY_FILES += \
@@ -60,10 +60,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
-## Enable repeatable keys in CWM
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cwm.enable_key_repeat=true
-
 ## Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
@@ -74,27 +70,20 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.qcom.rc:root/init.qcom.rc \
     $(LOCAL_PATH)/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc \
-    $(LOCAL_PATH)/ramdisk/init.qcom.sh:root/init.qcom.sh \
     $(LOCAL_PATH)/ramdisk/GT-S6500.rle:root/GT-S6500.rle \
-	$(LOCAL_PATH)/ramdisk/lpm.rc:root/lpm.rc \
-	$(LOCAL_PATH)/ramdisk/fstab.jena:root/fstab.jena
+    $(LOCAL_PATH)/ramdisk/lpm.rc:root/lpm.rc \
+    $(LOCAL_PATH)/ramdisk/fstab.jena:root/fstab.jena
    
-
-# Qualcomm scripts
+## Bluetooth
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh
-
-## Bluetooth configuration
-PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/etc/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
 	system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
 
 ## Wi-Fi config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-	$(LOCAL_PATH)/prebuilt/etc/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
-	$(LOCAL_PATH)/prebuilt/bin/wlan_tool:system/bin/wlan_tool
+    $(LOCAL_PATH)/prebuilt/etc/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
+    $(LOCAL_PATH)/prebuilt/bin/wlan_tool:system/bin/wlan_tool
 
 ## Vold config
 PRODUCT_COPY_FILES += \
@@ -106,9 +95,8 @@ PRODUCT_COPY_FILES += \
 
 ## Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-	$(LOCAL_PATH)/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
-	$(LOCAL_PATH)/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf
+    $(LOCAL_PATH)/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
+    $(LOCAL_PATH)/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf
 	
 ## Keychar
 PRODUCT_COPY_FILES += \
@@ -161,16 +149,20 @@ PRODUCT_COPY_FILES += \
 ## Sensors
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/calib.dat:system/etc/calib.dat \
-	$(LOCAL_PATH)/prebuilt/etc/param.dat:system/etc/param.dat \
-	$(LOCAL_PATH)/prebuilt/etc/sensors.dat:system/etc/sensors.dat
-
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=2
+    $(LOCAL_PATH)/prebuilt/etc/param.dat:system/etc/param.dat \
+    $(LOCAL_PATH)/prebuilt/etc/sensors.dat:system/etc/sensors.dat
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
-PRODUCT_TAGS += dalvik.gc.type-precise
+## Enable repeatable keys in CWM
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cwm.enable_key_repeat=true
 
 ## This is an MDPI device
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 PRODUCT_LOCALES += mdpi
+
+## Other
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=2
+PRODUCT_TAGS += dalvik.gc.type-precise
