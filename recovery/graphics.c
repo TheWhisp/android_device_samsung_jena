@@ -30,11 +30,7 @@
 #include <pixelflinger/pixelflinger.h>
 #include <cutils/memory.h>
 
-#ifndef BOARD_LDPI_RECOVERY
-	#include "font_10x18.h"
-#else
-	#include "font_7x16.h"
-#endif
+#include "roboto_10x18.h"
 
 #include "minui.h"
 
@@ -91,11 +87,7 @@ static int get_framebuffer(GGLSurface *fb)
     fb->version = sizeof(*fb);
     fb->width = vi.xres;
     fb->height = vi.yres;
-#ifdef BOARD_HAS_JANKY_BACKBUFFER
-    fb->stride = fi.line_length/2;
-#else
     fb->stride = vi.xres_virtual;
-#endif
     fb->data = bits;
     fb->format = GGL_PIXEL_FORMAT_RGB_565;
     memset(fb->data, 0, vi.yres * vi.xres_virtual * vi.bits_per_pixel / 8);
@@ -105,13 +97,8 @@ static int get_framebuffer(GGLSurface *fb)
     fb->version = sizeof(*fb);
     fb->width = vi.xres;
     fb->height = vi.yres;
-#ifdef BOARD_HAS_JANKY_BACKBUFFER
-    fb->stride = fi.line_length/2;
-    fb->data = (void*) (((unsigned) bits) + vi.yres * fi.line_length);
-#else
     fb->stride = vi.xres_virtual;
     fb->data = (void*) (((unsigned) bits) + (vi.yres * vi.xres_virtual * vi.bits_per_pixel / 8));
-#endif
     fb->format = GGL_PIXEL_FORMAT_RGB_565;
     memset(fb->data, 0, vi.yres * vi.xres_virtual * vi.bits_per_pixel / 8);
 
@@ -165,16 +152,6 @@ void gr_flip(void)
 
     /* swap front and back buffers */
     gr_active_fb = (gr_active_fb + 1) & 1;
-
-#ifdef BOARD_HAS_FLIPPED_SCREEN
-    /* flip buffer 180 degrees for devices with physicaly inverted screens */
-    unsigned int i;
-    for (i = 1; i < (vi.xres * vi.yres); i++) {
-        unsigned short tmp = gr_mem_surface.data[i];
-        gr_mem_surface.data[i] = gr_mem_surface.data[(vi.xres * vi.yres * 2) - i];
-        gr_mem_surface.data[(vi.xres * vi.yres * 2) - i] = tmp;
-    }
-#endif
 
     /* copy data from the in-memory surface to the buffer we're about
      * to make active. */ 

@@ -17,32 +17,21 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 ## Inherit proprietary blobs
 $(call inherit-product, device/samsung/jena/proprietary/proprietary.mk)
 
-# QCOM Display
+# Video
+PRODUCT_PACKAGES += \
+    libstagefrighthw \
+    libmm-omxcore \
+    libOmxCore
+
+# Graphics
 PRODUCT_PACKAGES += \
     copybit.msm7x27a \
     gralloc.msm7x27a \
-    hwcomposer.msm7x27a \
-    libgenlock \
-    libI420colorconvert \
-    libmemalloc \
-    liboverlay \
-    libQcomUI \
-    libqdutils \
-    libtilerenderer
+    hwcomposer.msm7x27a
 
-## OMX
+## Misc.
 PRODUCT_PACKAGES += \
-    libdivxdrmdecrypt \
-    libmm-omxcore \
-    libOmxCore \
-    libOmxVdec \
-    libOmxVenc \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libstagefrighthw
-
-## Filesystem tools
-PRODUCT_PACKAGES += \
+    dexpreopt \
     make_ext4fs \
     setup_fs
 
@@ -57,16 +46,9 @@ PRODUCT_PACKAGES += \
 ## Other hardware
 PRODUCT_PACKAGES += \
     lights.msm7x27a \
-	camera.msm7x27a \
-	gps.msm7x27a \
-	power.msm7x27a
-
-# Misc
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory \
-	hciconfig \
-    hcitool \
-	gatttool
+    camera.msm7x27a \
+    gps.msm7x27a \
+    power.msm7x27a
 
 ## Permissions
 PRODUCT_COPY_FILES += \
@@ -74,15 +56,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
-
-## Enable repeatable keys in CWM
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cwm.enable_key_repeat=true
 
 ## Media
 PRODUCT_COPY_FILES += \
@@ -94,30 +71,20 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.qcom.rc:root/init.qcom.rc \
     $(LOCAL_PATH)/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc \
-    $(LOCAL_PATH)/ramdisk/init.qcom.sh:root/init.qcom.sh \
     $(LOCAL_PATH)/ramdisk/GT-S6500.rle:root/GT-S6500.rle \
-	$(LOCAL_PATH)/ramdisk/lpm.rc:root/lpm.rc \
-	$(LOCAL_PATH)/ramdisk/fstab.jena:root/fstab.jena
+    $(LOCAL_PATH)/ramdisk/lpm.rc:root/lpm.rc \
+    $(LOCAL_PATH)/ramdisk/fstab.jena:root/fstab.jena
    
-
-# Qualcomm scripts
+## Bluetooth
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.post_boot.sh:/system/etc/init.qcom.post_boot.sh \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.coex.sh:/system/etc/init.qcom.coex.sh \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
-    $(LOCAL_PATH)/prebuilt/etc/init/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh
-
-## Bluetooth configuration
-PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/etc/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
 	system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
 
 ## Wi-Fi config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-	$(LOCAL_PATH)/prebuilt/etc/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
-	$(LOCAL_PATH)/prebuilt/bin/wlan_tool:system/bin/wlan_tool
+    $(LOCAL_PATH)/prebuilt/etc/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
+    $(LOCAL_PATH)/prebuilt/bin/wlan_tool:system/bin/wlan_tool
 
 ## Vold config
 PRODUCT_COPY_FILES += \
@@ -129,9 +96,8 @@ PRODUCT_COPY_FILES += \
 
 ## Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
-	$(LOCAL_PATH)/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv
-
+    $(LOCAL_PATH)/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv
+	
 ## Keychar
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/usr/keychars/7x27a_kp.kcm.bin:system/usr/keychars/7x27a_kp.kcm.bin \
@@ -183,21 +149,20 @@ PRODUCT_COPY_FILES += \
 ## Sensors
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/calib.dat:system/etc/calib.dat \
-	$(LOCAL_PATH)/prebuilt/etc/param.dat:system/etc/param.dat \
-	$(LOCAL_PATH)/prebuilt/etc/sensors.dat:system/etc/sensors.dat
+    $(LOCAL_PATH)/prebuilt/etc/param.dat:system/etc/param.dat \
+    $(LOCAL_PATH)/prebuilt/etc/sensors.dat:system/etc/sensors.dat
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=2
+$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
-## We have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
+## Enable repeatable keys in CWM
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cwm.enable_key_repeat=true
 
 ## This is an MDPI device
 PRODUCT_AAPT_CONFIG := normal mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 PRODUCT_LOCALES += mdpi
 
-## For easy debugging
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.secure=0 \
-    ro.allow.mock.location=1 \
-    ro.debuggable=1
+## Other
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=2
+PRODUCT_TAGS += dalvik.gc.type-precise

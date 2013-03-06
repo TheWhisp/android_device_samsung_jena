@@ -19,8 +19,6 @@
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/lib/libsec-ril.so:system/lib/libsec-ril.so \
     $(LOCAL_PATH)/lib/libsecril-client.so:system/lib/libsecril-client.so \
-	$(LOCAL_PATH)/lib/libril.so:system/lib/libril.so \
-	$(LOCAL_PATH)/bin/rild:system/bin/rild \
 	$(LOCAL_PATH)/bin/qmuxd:system/bin/qmuxd
 
 ## Camera
@@ -92,17 +90,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bin/rmt_storage:system/bin/rmt_storage \
 	$(LOCAL_PATH)/bin/abtfilt:system/bin/abtfilt \
-    $(LOCAL_PATH)/bin/hci_qcomm_init:system/bin/hci_qcomm_init \
-	$(LOCAL_PATH)/bin/qcm_dut:system/bin/qcm_dut
+    $(LOCAL_PATH)/bin/hci_qcomm_init:system/bin/hci_qcomm_init
 
 ## Wireless
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/bin/hostapd:system/bin/hostapd \
-	$(LOCAL_PATH)/bin/hostapd_cli:system/bin/hostapd_cli \
-	$(LOCAL_PATH)/bin/hostapd_wps:system/bin/hostapd_wps \
-	$(LOCAL_PATH)/bin/wmiconfig:system/bin/wmiconfig \
-	$(LOCAL_PATH)/bin/bridgemgrd:system/bin/hostapd_wps \
-	$(LOCAL_PATH)/bin/netmgrd:system/bin/netmgrd
+	$(LOCAL_PATH)/bin/hostapd:system/bin/hostapd
 
 ## Battery, charging	
 PRODUCT_COPY_FILES += \
