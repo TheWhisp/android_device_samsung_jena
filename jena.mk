@@ -37,7 +37,7 @@ PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
 ## Bluetooth
-PRODUCT_PACKAGES += \    
+PRODUCT_PACKAGES += \
     hciconfig \
     hcitool
 
