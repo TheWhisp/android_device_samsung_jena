@@ -102,5 +102,9 @@
 /dev/ttyCPLOG0            0660   radio      radio
 
 ## Other
-/dev/oncrpc/*             0660   radio      system
 /dev/rfkill               0660   root      	wifi
+/dev/rfcomm0              0660   bluetooth   bluetooth
+
+## GPS
+/dev/oncrpc/00000000:0    0660  system       qcom_oncrpc
+/dev/oncrpc/3000008c:00050000 0660   system       qcom_oncrpc

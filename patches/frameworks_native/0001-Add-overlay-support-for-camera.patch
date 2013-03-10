@@ -1,4 +1,4 @@
-From 4514d823dc788daa83628cde8df7154c451000d6 Mon Sep 17 00:00:00 2001
+From 6c54fb0d108c93cfbea24afa4bafc37967d9b979 Mon Sep 17 00:00:00 2001
 From: Evan McClain <aeroevan@gmail.com>
 Date: Wed, 18 Jul 2012 23:56:04 -0400
 Subject: [PATCH] Overlay support for legacy camera libs
@@ -11,18 +11,18 @@ Move http://review.cyanogenmod.com/#/c/13285/ to proper place for jellybean.
 Signed-off-by: Evan McClain <aeroevan@gmail.com>
 Change-Id: Ib6afd1b610b1d3e263fcaa38585e7a1116baaf58
 ---
- include/ui/Overlay.h |  107 +++++++++++++++++++++++++++++++++++++++
- libs/ui/Android.mk   |    4 ++
- libs/ui/Overlay.cpp  |  136 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/ui/legacy/Overlay.h |  107 ++++++++++++++++++++++++++++++++++
+ libs/ui/Android.mk          |    4 ++
+ libs/ui/legacy/Overlay.cpp  |  136 +++++++++++++++++++++++++++++++++++++++++++
  3 files changed, 247 insertions(+)
- create mode 100644 include/ui/Overlay.h
- create mode 100644 libs/ui/Overlay.cpp
+ create mode 100644 include/ui/legacy/Overlay.h
+ create mode 100644 libs/ui/legacy/Overlay.cpp
 
-diff --git a/include/ui/Overlay.h b/include/ui/Overlay.h
+diff --git a/include/ui/legacy/Overlay.h b/include/ui/legacy/Overlay.h
 new file mode 100644
 index 0000000..bbf16d2
 --- /dev/null
-+++ b/include/ui/Overlay.h
++++ b/include/ui/legacy/Overlay.h
 @@ -0,0 +1,107 @@
 +/*
 + * Copyright (C) 2007 The Android Open Source Project
@@ -132,7 +132,7 @@ index 0000000..bbf16d2
 +
 +#endif // ANDROID_OVERLAY_H
 diff --git a/libs/ui/Android.mk b/libs/ui/Android.mk
-index 719ddae..e510663 100644
+index 719ddae..369e021 100644
 --- a/libs/ui/Android.mk
 +++ b/libs/ui/Android.mk
 @@ -56,6 +56,10 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE), true)
@@ -140,17 +140,17 @@ index 719ddae..e510663 100644
  endif
  
 +ifeq ($(BOARD_USES_LEGACY_OVERLAY), true)
-+LOCAL_SRC_FILES += Overlay.cpp
++LOCAL_SRC_FILES += legacy/Overlay.cpp
 +endif
 +
  LOCAL_MODULE:= libui
  
  include $(BUILD_SHARED_LIBRARY)
-diff --git a/libs/ui/Overlay.cpp b/libs/ui/Overlay.cpp
+diff --git a/libs/ui/legacy/Overlay.cpp b/libs/ui/legacy/Overlay.cpp
 new file mode 100644
-index 0000000..8056cb3
+index 0000000..acf67c6
 --- /dev/null
-+++ b/libs/ui/Overlay.cpp
++++ b/libs/ui/legacy/Overlay.cpp
 @@ -0,0 +1,136 @@
 +/*
 + * Copyright (C) 2007 The Android Open Source Project
@@ -175,7 +175,7 @@ index 0000000..8056cb3
 +#include <utils/Errors.h>
 +#include <binder/MemoryHeapBase.h>
 +
-+#include <ui/Overlay.h>
++#include <ui/legacy/Overlay.h>
 +
 +namespace android {
 +

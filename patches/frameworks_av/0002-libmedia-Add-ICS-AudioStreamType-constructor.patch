@@ -1,0 +1,29 @@
+From 699a64cede724b045a404db06fc0f60af65aa596 Mon Sep 17 00:00:00 2001
+From: Arne Coucheron <arco68@gmail.com>
+Date: Wed, 14 Nov 2012 23:45:16 +0100
+Subject: [PATCH] libmedia: Add ICS AudioStreamType constructor
+
+Needed by some pre-jellybean camera blobs.
+
+Change-Id: I9281e2a736d9b3495bddaf612e8eab7fcad97bdf
+---
+ media/libmedia/mediaplayer.cpp |    5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/media/libmedia/mediaplayer.cpp b/media/libmedia/mediaplayer.cpp
+index 10d57e2..4b2e893 100644
+--- a/media/libmedia/mediaplayer.cpp
++++ b/media/libmedia/mediaplayer.cpp
+@@ -803,4 +803,9 @@ status_t MediaPlayer::setNextMediaPlayer(const sp<MediaPlayer>& next) {
+     return mPlayer->setNextPlayer(next == NULL ? NULL : next->mPlayer);
+ }
+ 
++extern "C" int _ZN7android11MediaPlayer18setAudioStreamTypeE19audio_stream_type_t();
++extern "C" int _ZN7android11MediaPlayer18setAudioStreamTypeEi() {
++    return _ZN7android11MediaPlayer18setAudioStreamTypeE19audio_stream_type_t();
++}
++
+ }; // namespace android
+-- 
+1.7.9.5
+

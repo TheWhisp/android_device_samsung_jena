@@ -83,7 +83,7 @@ shift $(($OPTIND-1))
 # BTS_DEVICE, BTS_TYPE, BTS_BAUD, and BTS_ADDRESS.
 
 #Selectively Disable sleep
-BOARD=`getprop ro.product.device`
+BOARD=`GT-S6500D` # it's GT-S6500D on stock, jena on CM
 
 POWER_CLASS=`getprop qcom.bt.dev_power_class`
 

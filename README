@@ -3,3 +3,10 @@
 The device configuration is still a work in progress.
 
 Current maintainer: TheWhisp
+
+TODO:
+
+1) Fix Bluetooth - D-Bus related errors
+2) Fix Wi-Fi AP
+3) Fix Camera
+4) Add NFC support for GT-S6500

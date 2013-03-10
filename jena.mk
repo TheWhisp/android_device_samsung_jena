@@ -17,13 +17,13 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 ## Inherit proprietary blobs
 $(call inherit-product, device/samsung/jena/proprietary/proprietary.mk)
 
-# Video
+## Video
 PRODUCT_PACKAGES += \
     libstagefrighthw \
     libmm-omxcore \
     libOmxCore
 
-# Graphics
+## Graphics
 PRODUCT_PACKAGES += \
     copybit.msm7x27a \
     gralloc.msm7x27a \
@@ -33,7 +33,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     dexpreopt \
     make_ext4fs \
-    setup_fs
+    setup_fs \
+    com.android.future.usb.accessory
+
+## Bluetooth
+PRODUCT_PACKAGES += \    
+    hciconfig \
+    hcitool
 
 ## Audio
 PRODUCT_PACKAGES += \
@@ -57,9 +63,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
+    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
 ## Media
 PRODUCT_COPY_FILES += \
@@ -80,30 +87,25 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
 	system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
 
-## Wi-Fi config
+## Network
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/prebuilt/etc/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
-    $(LOCAL_PATH)/prebuilt/bin/wlan_tool:system/bin/wlan_tool
+    $(LOCAL_PATH)/prebuilt/bin/get_macaddrs:system/bin/get_macaddrs
 
 ## Vold config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
-## Binaries
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/bin/get_macaddrs:system/bin/get_macaddrs
-
 ## Audio
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
     $(LOCAL_PATH)/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv
 	
 ## Keychar
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/usr/keychars/7x27a_kp.kcm.bin:system/usr/keychars/7x27a_kp.kcm.bin \
     $(LOCAL_PATH)/prebuilt/usr/keychars/surf_keypad.kcm.bin:system/usr/keychars/surf_keypad.kcm.bin \
-    $(LOCAL_PATH)/prebuilt/usr/keychars/qwerty.kcm.bin:system/usr/keychars/qwerty.kcm.bin \
-    $(LOCAL_PATH)/prebuilt/usr/keychars/qwerty2.kcm.bin:system/usr/keychars/qwerty2.kcm.bin
 
 ## Keylayout
 PRODUCT_COPY_FILES += \
@@ -145,12 +147,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/media/battery_charging_90.qmg:system/media/battery_charging_90.qmg \
     $(LOCAL_PATH)/prebuilt/media/battery_charging_95.qmg:system/media/battery_charging_95.qmg \
     $(LOCAL_PATH)/prebuilt/media/battery_charging_100.qmg:system/media/battery_charging_100.qmg
-
-## Sensors
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/calib.dat:system/etc/calib.dat \
-    $(LOCAL_PATH)/prebuilt/etc/param.dat:system/etc/param.dat \
-    $(LOCAL_PATH)/prebuilt/etc/sensors.dat:system/etc/sensors.dat
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
