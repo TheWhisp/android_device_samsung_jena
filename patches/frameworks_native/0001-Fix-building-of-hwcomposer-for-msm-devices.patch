@@ -1,0 +1,46 @@
+From 9f1e09a7d62d006542cee7b86c2bfcf7eaefed68 Mon Sep 17 00:00:00 2001
+From: Sportsstar89 <sjpirri@gmail.com>
+Date: Sun, 13 Jan 2013 18:57:14 -0500
+Subject: [PATCH] Fix building of hwcomposer for msm devices fixes
+ /home/kovjanos/cm10/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/bin/../lib/gcc/arm-linux-androideabi/4.6.x-google/../../../../arm-linux-androideabi/bin/ld:
+ error:
+ /home/kovjanos/cm10/out/target/product/leo/obj/SHARED_LIBRARIES/hwcomposer.qsd8k_intermediates/hwc_copybit.o:
+ multiple definition of
+ 'android::Singleton<qdutils::QCCompositionType>::sInstance'
+ /home/kovjanos/cm10/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/bin/../lib/gcc/arm-linux-androideabi/4.6.x-google/../../../../arm-linux-androideabi/bin/ld:
+ /home/kovjanos/cm10/out/target/product/leo/obj/SHARED_LIBRARIES/hwcomposer.qsd8k_intermediates/hwc.o:
+ previous definition here
+ /home/kovjanos/cm10/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/bin/../lib/gcc/arm-linux-androideabi/4.6.x-google/../../../../arm-linux-androideabi/bin/ld:
+ error:
+ /home/kovjanos/cm10/out/target/product/leo/obj/SHARED_LIBRARIES/hwcomposer.qsd8k_intermediates/hwc_copybit.o:
+ multiple definition of
+ 'android::Singleton<qdutils::QCCompositionType>::sLock'
+ /home/kovjanos/cm10/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.6/bin/../lib/gcc/arm-linux-androideabi/4.6.x-google/../../../../arm-linux-androideabi/bin/ld:
+ /home/kovjanos/cm10/out/target/product/leo/obj/SHARED_LIBRARIES/hwcomposer.qsd8k_intermediates/hwc.o:
+ previous definition here collect2: ld returned 1 exit
+ status
+
+Change-Id: I1d8fc2298590c7f5f20f257ad1462768264bac78
+---
+ include/utils/Singleton.h |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/utils/Singleton.h b/include/utils/Singleton.h
+index c60680e..a42ce21 100644
+--- a/include/utils/Singleton.h
++++ b/include/utils/Singleton.h
+@@ -65,9 +65,9 @@ private:
+  */
+ 
+ #define ANDROID_SINGLETON_STATIC_INSTANCE(TYPE)                 \
++    template class Singleton< TYPE >;                           \
+     template<> Mutex Singleton< TYPE >::sLock(Mutex::PRIVATE);  \
+-    template<> TYPE* Singleton< TYPE >::sInstance(0);           \
+-    template class Singleton< TYPE >;
++    template<> TYPE* Singleton< TYPE >::sInstance(0);
+ 
+ 
+ // ---------------------------------------------------------------------------
+-- 
+1.7.9.5
+
