@@ -15,10 +15,5 @@
 LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),jena)
-
-## Hack to use prebuilt libcamera
-$(shell mkdir -p $(OUT)/obj/SHARED_LIBRARIES/libcamera_intermediates)
-$(shell touch $(OUT)/obj/SHARED_LIBRARIES/libcamera_intermediates/export_includes)
-
 include $(call all-makefiles-under,$(LOCAL_PATH))
 endif

@@ -14,10 +14,13 @@
 #
 # BoardConfig.mk
 #
-# Product compile-time definitions.
-#
 
-LOCAL_PATH:= $(call my-dir)
+# This variable is set first, so it can be overridden
+# by BoardConfigVendor.mk
+USE_CAMERA_STUB := true
+
+# Use the non-open-source parts, if they're present
+-include vendor/samsung/jena/BoardConfigVendor.mk
 
 ## Kernel, bootloader etc.
 TARGET_NO_BOOTLOADER := true
@@ -46,7 +49,6 @@ TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_OTA_ASSERT_DEVICE := jena,GT-S6500,GT-S6500D,GT-S6500T,GT-S6500I
 
 ## Webkit
-#DYNAMIC_SHARED_LIBV8SO := true
 ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
 COMMON_GLOBAL_CFLAGS += -DFORCE_CPU_UPLOAD
@@ -59,16 +61,6 @@ HTTP := chrome
 WITH_JIT := true
 ENABLE_JSC_JIT := true
 
-## Camera
-USE_CAMERA_STUB := false
-BOARD_NEEDS_MEMORYHEAPPMEM := true
-BOARD_USE_NASTY_PTHREAD_CREATE_HACK := true
-BOARD_USES_LEGACY_OVERLAY := true
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_QCOM -DBINDER_COMPAT
-
-## Media
-COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK -DQCOM_ICS_DECODERS
-
 ## Graphics
 USE_OPENGL_RENDERER := true
 TARGET_GRALLOC_USES_ASHMEM := true
@@ -79,8 +71,9 @@ BOARD_USES_QCOM_HARDWARE := true
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
 BOARD_USES_QCOM_PMEM := true
 BOARD_USES_QCOM_LIBS := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 COMMON_GLOBAL_CFLAGS += -DANCIENT_GL
+TARGET_QCOM_DISPLAY_VARIANT := legacy
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_NO_SECURE_PLAYBACK -DQCOM_ICS_DECODERS
 
 ## Other QCOM
 TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
@@ -94,18 +87,23 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 ## Bluetooth
 BOARD_HAVE_BLUETOOTH := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/jena/bluetooth/
 
 ## Wi-Fi
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WLAN_DEVICE := ath6kl
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_ath6kl
 WIFI_DRIVER_MODULE_PATH := "/system/wifi/ar6000.ko"
 WIFI_DRIVER_MODULE_NAME := "ar6000"
+WIFI_EXT_MODULE_PATH := "/system/lib/modules/librasdioif.ko"
+WIFI_EXT_MODULE_NAME := "librasdioif"
+BOARD_HAVE_SAMSUNG_WIFI := true
 
 ## RIL
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
 BOARD_USES_LEGACY_RIL := true
+BOARD_RIL_CLASS := ../../../device/samsung/jena/ril/
 
 ## Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
@@ -113,7 +111,6 @@ BOARD_VOLD_MAX_PARTITIONS := 24
 
 ## UMS
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
-# Enable this when building recovery
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun%d/file"
 
 ## Legacy touchscreen support
@@ -127,6 +124,7 @@ TARGET_BOOTANIMATION_USE_RGB565 := true
 
 ## Use device specific modules
 TARGET_PROVIDES_LIBLIGHTS := true
+TARGET_PROVIDES_POWERHAL := true
 
 ## Recovery
 BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/jena/recovery/graphics.c
