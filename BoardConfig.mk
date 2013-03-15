@@ -101,6 +101,7 @@ WIFI_EXT_MODULE_NAME := "librasdioif"
 BOARD_HAVE_SAMSUNG_WIFI := true
 
 ## RIL
+BOARD_USES_LEGACY_RIL := true
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
 BOARD_RIL_CLASS := ../../../device/samsung/jena/ril/
 
