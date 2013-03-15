@@ -7,8 +7,6 @@
 rild.libpath=/system/lib/libsec-ril.so
 rild.libargs=-d /dev/smd0
 ro.telephony.ril_class=SamsungMSMRIL
-ro.telephony.call_ring.multiple=false
-ro.telephony.call_ring.delay=3000
 mobiledata.interfaces=pdp0,gprs,ppp0
 DEVICE_PROVISIONED=1
 
@@ -36,7 +34,7 @@ debug.enabletr=true
 ro.hw_plat=7x27a
 
 ## USB, storage
-persist.sys.usb.config=mass_storage,adb
+persist.sys.usb.config=mtp
 persist.service.adb.enable=1
 ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1
 ro.vold.umsdirtyratio=50
