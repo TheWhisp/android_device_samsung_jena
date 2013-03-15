@@ -102,7 +102,6 @@ BOARD_HAVE_SAMSUNG_WIFI := true
 
 ## RIL
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
-BOARD_USES_LEGACY_RIL := true
 BOARD_RIL_CLASS := ../../../device/samsung/jena/ril/
 
 ## Vold

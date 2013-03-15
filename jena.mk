@@ -52,11 +52,6 @@ PRODUCT_PACKAGES += \
     gps.msm7x27a \
     power.msm7x27a
 
-## Charger
-PRODUCT_PACKAGES += \
-    charger \
-    charger_res_images   
-
 ## Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
