@@ -16,9 +16,6 @@ DEVICE_PROVISIONED=1
 wifi.interface=wlan0
 wifi.supplicant_scan_interval=120
 
-## Bluetooth
-bt.chip.type=WCN_2243
-
 ## Display, graphics
 ro.sf.lcd_density=160
 ro.opengles.version=131072
