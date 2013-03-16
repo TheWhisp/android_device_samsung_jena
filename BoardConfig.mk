@@ -14,10 +14,13 @@
 #
 # BoardConfig.mk
 #
-# Product compile-time definitions.
-#
 
-LOCAL_PATH:= $(call my-dir)
+# This variable is set first, so it can be overridden
+# by BoardConfigVendor.mk
+USE_CAMERA_STUB := true
+
+# Use the non-open-source parts, if they're present
+-include vendor/samsung/jena/BoardConfigVendor.mk
 
 ## Kernel, bootloader etc.
 TARGET_NO_BOOTLOADER := true
@@ -43,7 +46,7 @@ TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 ## Assert
-TARGET_OTA_ASSERT_DEVICE := jena,GT-S6500,GT-S6500D,GT-S6500T,GT-S6500I
+TARGET_OTA_ASSERT_DEVICE := jena,GT-S6500,GT-S6500D,GT-S6500T
 
 ## Webkit
 ENABLE_WEBGL := true
@@ -58,17 +61,6 @@ HTTP := chrome
 WITH_JIT := true
 ENABLE_JSC_JIT := true
 
-## Camera
-USE_CAMERA_STUB := false
-BOARD_NEEDS_MEMORYHEAPPMEM := true
-BOARD_CAMERA_USE_MM_HEAP := true
-BOARD_USES_LEGACY_OVERLAY := true
-TARGET_DISABLE_ARM_PIE := true
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_QCOM -DBINDER_COMPAT
-
-## Media
-COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK -DQCOM_ICS_DECODERS
-
 ## Graphics
 USE_OPENGL_RENDERER := true
 TARGET_GRALLOC_USES_ASHMEM := true
@@ -79,7 +71,7 @@ BOARD_USES_QCOM_HARDWARE := true
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
 BOARD_USES_QCOM_PMEM := true
 BOARD_USES_QCOM_LIBS := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_NO_SECURE_PLAYBACK -DQCOM_ICS_DECODERS
 
 ## Other QCOM
 TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
@@ -106,8 +98,8 @@ WIFI_EXT_MODULE_NAME := "librasdioif"
 BOARD_HAVE_SAMSUNG_WIFI := true
 
 ## RIL
-BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
 BOARD_USES_LEGACY_RIL := true
+BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
 
 ## Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
@@ -128,6 +120,7 @@ TARGET_BOOTANIMATION_USE_RGB565 := true
 
 ## Use device specific modules
 TARGET_PROVIDES_LIBLIGHTS := true
+TARGET_PROVIDES_POWERHAL := true
 
 ## Recovery
 BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/jena/recovery/graphics.c

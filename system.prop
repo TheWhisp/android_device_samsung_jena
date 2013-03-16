@@ -14,7 +14,10 @@ DEVICE_PROVISIONED=1
 
 ## Wi-Fi interface
 wifi.interface=wlan0
-wifi.supplicant_scan_interval=90
+wifi.supplicant_scan_interval=120
+
+## Bluetooth
+bt.chip.type=WCN_2243
 
 ## Display, graphics
 ro.sf.lcd_density=160
@@ -33,9 +36,10 @@ persist.sys.purgeable_assets=1
 ro.vendor.extension_library=/system/lib/libqc-opt.so
 com.qc.hardware=true
 debug.enabletr=true
+ro.hw_plat=7x27a
 
 ## USB, storage
-persist.sys.usb.config=mass_storage,adb
+persist.sys.usb.config=mtp
 persist.service.adb.enable=1
 ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1
 ro.vold.umsdirtyratio=50

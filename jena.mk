@@ -14,9 +14,6 @@
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-## Inherit proprietary blobs
-$(call inherit-product, device/samsung/jena/proprietary/proprietary.mk)
-
 ## Video
 PRODUCT_PACKAGES += \
     libstagefrighthw \
@@ -31,7 +28,6 @@ PRODUCT_PACKAGES += \
 
 ## Misc.
 PRODUCT_PACKAGES += \
-    dexpreopt \
     make_ext4fs \
     setup_fs \
     com.android.future.usb.accessory
@@ -52,7 +48,6 @@ PRODUCT_PACKAGES += \
 ## Other hardware
 PRODUCT_PACKAGES += \
     lights.msm7x27a \
-    camera.msm7x27a \
     gps.msm7x27a \
     power.msm7x27a
 
@@ -73,19 +68,18 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml
 
-## Ramdisk
+## rootdir
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ramdisk/init.qcom.rc:root/init.qcom.rc \
-    $(LOCAL_PATH)/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    $(LOCAL_PATH)/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc \
-    $(LOCAL_PATH)/ramdisk/GT-S6500.rle:root/GT-S6500.rle \
-    $(LOCAL_PATH)/ramdisk/lpm.rc:root/lpm.rc \
-    $(LOCAL_PATH)/ramdisk/fstab.jena:root/fstab.jena
+    $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
+    $(LOCAL_PATH)/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
+    $(LOCAL_PATH)/rootdir/GT-S6500.rle:root/GT-S6500.rle \
+    $(LOCAL_PATH)/rootdir/fstab.jena:root/fstab.jena
    
 ## Bluetooth
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-	system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
+    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
 
 ## Network
 PRODUCT_COPY_FILES += \
@@ -110,7 +104,6 @@ PRODUCT_COPY_FILES += \
 ## Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/7x27a_kp.kl:system/usr/keylayout/7x27a_kp.kl \
-    $(LOCAL_PATH)/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/sec_key.kl:system/usr/keylayout/sec_key.kl \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/sec_powerkey.kl:system/usr/keylayout/sec_powerkey.kl \
@@ -120,35 +113,6 @@ PRODUCT_COPY_FILES += \
 ## Touchscreen
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/usr/idc/sec_touchscreen.idc:system/usr/idc/sec_touchscreen.idc
-
-## LPM
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/media/Disconnected.qmg:system/media/Disconnected.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_batteryerror.qmg:system/media/battery_batteryerror.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_error.qmg:system/media/battery_error.qmg \
-    $(LOCAL_PATH)/prebuilt/media/chargingwarning.qmg:system/media/chargingwarning.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_5.qmg:system/media/battery_charging_5.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_10.qmg:system/media/battery_charging_10.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_15.qmg:system/media/battery_charging_15.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_20.qmg:system/media/battery_charging_20.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_25.qmg:system/media/battery_charging_25.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_30.qmg:system/media/battery_charging_30.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_35.qmg:system/media/battery_charging_35.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_40.qmg:system/media/battery_charging_40.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_45.qmg:system/media/battery_charging_45.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_50.qmg:system/media/battery_charging_50.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_55.qmg:system/media/battery_charging_55.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_60.qmg:system/media/battery_charging_60.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_65.qmg:system/media/battery_charging_65.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_70.qmg:system/media/battery_charging_70.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_75.qmg:system/media/battery_charging_75.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_80.qmg:system/media/battery_charging_80.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_85.qmg:system/media/battery_charging_85.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_90.qmg:system/media/battery_charging_90.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_95.qmg:system/media/battery_charging_95.qmg \
-    $(LOCAL_PATH)/prebuilt/media/battery_charging_100.qmg:system/media/battery_charging_100.qmg
-
-$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 ## Enable repeatable keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -162,3 +126,6 @@ PRODUCT_LOCALES += mdpi
 ## Other
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=2
 PRODUCT_TAGS += dalvik.gc.type-precise
+
+$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
+$(call inherit-product, vendor/samsung/jena/jena-vendor.mk)
