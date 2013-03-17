@@ -42,6 +42,7 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CORTEX_CACHE_LINE_32 := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/jena/include
 
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
