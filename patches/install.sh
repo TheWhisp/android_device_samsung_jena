@@ -1,11 +1,7 @@
-echo "Obtaining build directory..."
+echo "I: Obtaining build directory..."
 rootdirectory="$PWD"
 cd $rootdirectory
-cd frameworks/native
-echo "Applying frameworks/native patches..."
-git am $rootdirectory/device/samsung/jena/patches/frameworks_native/*.patch
-cd $rootdirectory
-cd frameworks/av
-echo "Applying frameworks/av patches..."
-git am $rootdirectory/device/samsung/jena/patches/frameworks_av/*.patch
+cd build
+echo "I: Applying build patches..."
+git am $rootdirectory/device/samsung/jena/patches/android_build/*.patch
 cd $rootdirectory
