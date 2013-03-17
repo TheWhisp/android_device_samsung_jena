@@ -36,7 +36,7 @@ debug.enabletr=true
 ro.hw_plat=7x27a
 
 ## USB, storage
-persist.sys.usb.config=mtp
+persist.sys.usb.config=mass_storage,adb
 persist.service.adb.enable=1
 ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1
 ro.vold.umsdirtyratio=50
