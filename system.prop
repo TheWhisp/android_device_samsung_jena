@@ -14,7 +14,7 @@ DEVICE_PROVISIONED=1
 
 ## Wi-Fi interface
 wifi.interface=wlan0
-wifi.supplicant_scan_interval=120
+wifi.supplicant_scan_interval=60
 
 ## Display, graphics
 ro.sf.lcd_density=160
@@ -23,11 +23,11 @@ ro.max.fling_velocity=4000
 debug.sf.hw=1
 debug.gr.numframebuffers=3
 hwui.render_dirty_regions=false
-persist.sys.use_dithering=2
 
 ## Memory
 ro.zram.default=0
 persist.sys.purgeable_assets=1
+sys.mem.max_hidden_apps=3
 
 ## Qualcomm
 ro.vendor.extension_library=/system/lib/libqc-opt.so
@@ -36,16 +36,16 @@ debug.enabletr=true
 ro.hw_plat=7x27a
 
 ## USB, storage
-persist.sys.usb.config=mtp
+persist.sys.usb.config=mass_storage,adb
 persist.service.adb.enable=1
 ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1
 ro.vold.umsdirtyratio=50
 
-## MM modules
-media.stagefright.enable-player=true
-media.stagefright.enable-meta=false
-media.stagefright.enable-scan=true
-media.stagefright.enable-http=true
-media.stagefright.enable-fma2dp=true
-media.stagefright.enable-aac=true
-media.stagefright.enable-qcp=true
+## Dalvik
+dalvik.vm.checkjni=0
+dalvik.vm.dexopt-data-only=1
+dalvik.vm.dexopt-flags=v=a,o=v,m=y,u=y
+dalvik.vm.execution-mode=int:jit
+
+## Camcorder
+debug.camcorder.disablemeta=1

@@ -17,7 +17,8 @@
 
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
-USE_CAMERA_STUB := true
+
+USE_CAMERA_STUB := false
 
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/jena/BoardConfigVendor.mk
@@ -47,6 +48,10 @@ TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 ## Assert
 TARGET_OTA_ASSERT_DEVICE := jena,GT-S6500,GT-S6500D,GT-S6500T
+
+## Camera
+BOARD_NEEDS_MEMORYHEAPPMEM := true
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 
 ## Webkit
 ENABLE_WEBGL := true
